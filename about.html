@@ -1,603 +1,366 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>À propos - Édubiniplay</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>À propos – CahierMagik</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f8f4ee;
-      color: #2d2a24;
-      line-height: 1.6;
-    }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-    ul { list-style: none; }
+    /* ─────── PAGE À PROPOS ─────── */
 
-    /* Top promo bar */
-    .promo-bar {
-      background: #d4956a;
-      color: #fff;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px;
-      letter-spacing: 0.5px;
-      letter-spacing: 0.3px;
-    }
-
-    /* Header */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #ffffff;
-      border-bottom: 1px solid #e8e0d6;
-    }
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
+    .about-story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
       align-items: center;
-      justify-content: space-between;
-      height: 68px;
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #2d2a24;
-    }
-    .logo span {
-      color: #d4956a;
-      font-weight: 600;
-    }
-    .nav { display: flex; align-items: center; gap: 32px; }
-    .nav a {
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: #2d2a24;
-      transition: color 0.2s;
-    }
-    .nav a:hover,
-    .nav a.active { color: #d4956a; }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .cart-btn {
-      position: relative;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .cart-count {
-      position: absolute;
-      top: -4px;
-      right: -6px;
-      background: #d4956a;
-      color: #fff;
-      font-size: 0.65rem;
-      font-weight: 700;
-      min-width: 18px;
-      height: 18px;
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 4px;
-    }
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Breadcrumb */
-    .breadcrumb {
-      padding: 16px 0;
-      font-size: 0.82rem;
-      color: #88837a;
-    }
-    .breadcrumb a { color: #88837a; transition: color 0.2s; }
-    .breadcrumb a:hover { color: #d4956a; }
-    .breadcrumb span { color: #2d2a24; font-weight: 500; }
-    .breadcrumb .sep { margin: 0 8px; color: #aaa49b; }
-
-    /* Page title */
-    .page-title {
-      text-align: center;
-      padding: 40px 0 20px;
-    }
-    .page-title h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #2d2a24;
-    }
-    .page-title p {
-      color: #88837a;
-      font-size: 0.95rem;
-      margin-top: 8px;
-    }
-
-    /* Section generic */
-    .section {
       padding: 60px 0;
     }
-    .section-title {
-      text-align: center;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #2d2a24;
-      margin-bottom: 40px;
-    }
-
-    /* Notre histoire */
-    .story-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .story-content p {
-      color: #555;
-      margin-bottom: 18px;
-      font-size: 0.95rem;
-    }
-    .story-content p:last-child { margin-bottom: 0; }
-
-    /* Values grid */
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    .value-card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 36px 28px;
-      text-align: center;
-      border: 1px solid #e8e0d6;
-      transition: box-shadow 0.25s, transform 0.25s;
-    }
-    .value-card:hover {
-      box-shadow: 0 8px 28px rgba(0,0,0,0.06);
-      transform: translateY(-3px);
-    }
-    .value-card svg {
-      width: 40px;
-      height: 40px;
-      stroke: #d4956a;
-      stroke-width: 1.8;
-      fill: none;
+    @media (max-width: 700px) { .about-story { grid-template-columns: 1fr; text-align: center; } }
+    .about-story h2 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 32px;
       margin-bottom: 16px;
     }
-    .value-card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #2d2a24;
-      margin-bottom: 10px;
+    .about-story p {
+      font-size: 15px;
+      color: #555048;
+      line-height: 1.7;
+      margin-bottom: 14px;
     }
-    .value-card p {
-      font-size: 0.88rem;
-      color: #88837a;
-      line-height: 1.55;
+    .about-story svg { max-width: 360px; height: auto; }
+
+    .values-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 40px 0;
+    }
+    @media (max-width: 600px) { .values-list { grid-template-columns: 1fr; } }
+    .value-item {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 24px;
+      border: 1px solid #f0e8db;
+      text-align: center;
+    }
+    .value-item svg { width: 48px; height: 48px; margin-bottom: 16px; }
+    .value-item h3 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .value-item p {
+      font-size: 14px;
+      color: #7a736e;
+      line-height: 1.6;
     }
 
-    /* Team grid */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      gap: 24px;
+      padding: 40px 0;
     }
+    @media (max-width: 700px) { .team-grid { grid-template-columns: 1fr; } }
     .team-card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 32px 24px;
       text-align: center;
-      border: 1px solid #e8e0d6;
-      transition: box-shadow 0.25s;
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 20px;
+      border: 1px solid #f0e8db;
     }
-    .team-card:hover {
-      box-shadow: 0 8px 28px rgba(0,0,0,0.06);
-    }
-    .team-card .avatar-placeholder {
-      width: 90px;
-      height: 90px;
+    .team-card img {
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      background: #e8e0d6;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .team-card .avatar-placeholder svg {
-      width: 40px;
-      height: 40px;
-      stroke: #aaa49b;
-      stroke-width: 1.5;
-      fill: none;
-    }
-    .team-card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #2d2a24;
-      margin-bottom: 4px;
-    }
-    .team-card .role {
-      font-size: 0.82rem;
-      color: #d4956a;
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-    .team-card p {
-      font-size: 0.85rem;
-      color: #88837a;
-      line-height: 1.55;
-    }
-
-    /* Stats row */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      background: #ffffff;
-      border-radius: 14px;
-      border: 1px solid #e8e0d6;
-      padding: 40px 20px;
-    }
-    .stat-item {
-      text-align: center;
-      border-right: 1px solid #e8e0d6;
-      padding: 0 16px;
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-number {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #d4956a;
-    }
-    .stat-label {
-      font-size: 0.85rem;
-      color: #88837a;
-      margin-top: 4px;
-    }
-
-    /* Footer */
-    .footer {
-      background: #2d2a24;
-      color: #c4bcb0;
-      margin-top: 60px;
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 50px 20px 30px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr 1fr 1fr;
-      gap: 36px;
-      padding-bottom: 36px;
-      border-bottom: 1px solid rgba(196,188,176,0.15);
-    }
-    .footer-col h4 {
-      color: #ffffff;
-      font-size: 1rem;
-      font-weight: 600;
+      object-fit: cover;
       margin-bottom: 16px;
     }
-    .footer-col p,
-    .footer-col a {
-      font-size: 0.84rem;
-      color: #c4bcb0;
-      line-height: 1.7;
+    .team-card h3 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 17px;
     }
-    .footer-col a {
-      display: block;
-      transition: color 0.2s;
+    .team-card .role {
+      font-size: 13px;
+      color: #a98bdd;
+      font-weight: 600;
+      margin: 4px 0 8px;
     }
-    .footer-col a:hover { color: #d4956a; }
-    .footer-col .logo {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 24px;
-      font-size: 0.8rem;
-      color: #88837a;
-    }
-    .footer-bottom .payment-badges {
-      display: flex;
-      gap: 10px;
-    }
-    .footer-bottom .payment-badges svg {
-      width: 34px;
-      height: 24px;
-      stroke: #88837a;
-      stroke-width: 1.2;
-      fill: none;
+    .team-card p {
+      font-size: 13px;
+      color: #7a736e;
+      line-height: 1.5;
     }
 
-    /* Mobile nav */
-    .mobile-nav {
-      display: none;
-      background: #ffffff;
-      border-bottom: 1px solid #e8e0d6;
-      padding: 12px 20px;
+    .ink-section {
+      background: #fff;
+      border-radius: 24px;
+      padding: 48px;
+      margin: 40px 0;
+      border: 2px solid #f0e8db;
     }
-    .mobile-nav.open { display: block; }
-    .mobile-nav a {
-      display: block;
-      padding: 10px 0;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #2d2a24;
-      border-bottom: 1px solid #f0ebe4;
+    @media (max-width: 600px) { .ink-section { padding: 32px 24px; } }
+    .ink-section h2 { margin-bottom: 24px; }
+    .ink-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
-    .mobile-nav a:last-child { border-bottom: none; }
-    .mobile-nav a.active { color: #d4956a; }
+    @media (max-width: 600px) { .ink-steps { grid-template-columns: 1fr; } }
+    .ink-step {
+      text-align: center;
+      padding: 20px;
+    }
+    .ink-step .num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #a98bdd;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 20px;
+      margin: 0 auto 12px;
+    }
+    .ink-step h4 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+    .ink-step p {
+      font-size: 13px;
+      color: #7a736e;
+      line-height: 1.5;
+    }
 
-    /* Responsive */
-    @media (max-width: 900px) {
-      .nav { display: none; }
-      .menu-toggle { display: block; }
-      .values-grid { grid-template-columns: 1fr; }
-      .team-grid { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .stat-item:nth-child(2) { border-right: none; }
-      .stat-item:nth-child(3),
-      .stat-item:nth-child(4) { border-top: 1px solid #e8e0d6; padding-top: 20px; }
-      .stat-item:nth-child(3) { border-right: 1px solid #e8e0d6; }
-      .stat-item:nth-child(4) { border-right: none; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .footer-col:first-child { grid-column: 1 / -1; }
-      .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+    .numbers-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      padding: 40px 0;
+      text-align: center;
     }
-    @media (max-width: 500px) {
-      .stats-row { grid-template-columns: repeat(2, 1fr); gap: 0; }
-      .stat-item { padding: 16px 12px; }
-      .page-title h1 { font-size: 1.5rem; }
-      .section { padding: 40px 0; }
-      .section-title { font-size: 1.3rem; }
+    @media (max-width: 600px) { .numbers-row { grid-template-columns: repeat(2, 1fr); } }
+    .num-item h3 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 40px;
+      color: #a98bdd;
     }
+    .num-item p { font-size: 13px; color: #7a736e; font-weight: 600; }
   </style>
 </head>
 <body>
 
-  <!-- Promo bar -->
-  <div class="promo-bar">PROMO ÉTÉ : 1 acheté = 2 offerts | Livraison offerte dès 25€</div>
-
-  <!-- Header -->
   <header class="header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">Édubini<span>play</span></a>
-      <nav class="nav">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect x="2" y="6" width="28" height="20" rx="4" fill="#a98bdd" opacity="0.2"/>
+          <path d="M8 12h16M8 17h12M8 22h14" stroke="#a98bdd" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="25" cy="10" r="4" fill="#f9cf86"/>
+        </svg>
+        CahierMagik
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <nav class="nav-links" id="nav-links">
         <a href="index.html">Accueil</a>
-        <a href="collection.html">Catalogue</a>
+        <a href="collection.html">Boutique</a>
         <a href="about.html" class="active">À propos</a>
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <a href="cart.html" class="cart-btn" aria-label="Panier">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d2a24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <a href="cart.html" class="cart-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
           </svg>
-          <span class="cart-count">0</span>
+          <span class="cart-badge" id="cart-badge">0</span>
         </a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2d2a24" stroke-width="2" stroke-linecap="round">
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
-          </svg>
-        </button>
       </div>
-    </div>
-    <div class="mobile-nav" id="mobileNav">
-      <a href="index.html">Accueil</a>
-      <a href="collection.html">Catalogue</a>
-      <a href="about.html" class="active">À propos</a>
-      <a href="contact.html">Contact</a>
     </div>
   </header>
 
-  <main>
+  <section class="page-hero">
     <div class="container">
-      <!-- Breadcrumb -->
-      <nav class="breadcrumb">
-        <a href="index.html">Accueil</a><span class="sep">/</span><span>À propos</span>
-      </nav>
+      <h1>Notre histoire</h1>
+      <p>La magie de l'apprentissage depuis 2024</p>
     </div>
+  </section>
 
-    <!-- Notre histoire -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Notre histoire</h2>
-        <div class="story-content">
-          <p>Édubini est né d'une conviction simple : le jeu est le plus puissant des moteurs d'apprentissage. Fondée par Sophie et Marc Laurent, jeunes parents passionnés par l'éducation, notre marque a vu le jour dans leur salon en 2018, entourée de prototypes en carton et de crayons de couleur. Lassés des jouets en plastique sans âme et sans valeur pédagogique, ils ont décidé de créer une alternative qui allie plaisir et développement.</p>
-          <p>Très vite, le bouche-à-oreille a fait son œuvre. Les premiers jeux — un puzzle sensoriel et un coffret de découverte des formes — ont conquis les familles du quartier. Encouragés par cet accueil, Sophie a quitté son poste dans l'édition jeunesse et Marc son cabinet de conseil pour se consacrer pleinement à Édubini. Chaque produit est désormais développé en collaboration avec des pédagogues, des psychomotriciens et… des enfants, bien sûr.</p>
-          <p>Aujourd'hui, Édubini c'est une équipe de 15 passionnés, des milliers de familles heureuses et une promesse que nous portons chaque jour : offrir aux enfants les clés pour grandir, tout en s'amusant. Parce que derrière chaque jeu se cache une opportunité d'apprendre, de rire et de se souvenir.</p>
+  <section class="section">
+    <div class="container">
+      <div class="about-story">
+        <div>
+          <h2>L'histoire de CahierMagik</h2>
+          <p>Tout a commencé dans une petite classe de maternelle à Lyon. Marie, professeure des écoles depuis 15 ans, constatait chaque jour le gaspillage de papier dans sa classe. Des feuilles entières utilisées une seule fois, puis jetées.</p>
+          <p>En discutant avec son amie Claire, ingénieure chimiste, elles ont eu l'idée d'une encre thermosensible qui disparaît après quelques minutes. Les cahiers réutilisables étaient nés.</p>
+          <p>Aujourd'hui, CahierMagik c'est une équipe de 12 passionnés qui conçoit des outils pédagogiques magiques, durables et accessibles. Notre mission : faire aimer l'apprentissage aux enfants tout en protégeant la planète.</p>
+        </div>
+        <div style="display:flex;justify-content:center">
+          <svg viewBox="0 0 300 280" fill="none">
+            <circle cx="150" cy="140" r="120" fill="rgba(169,139,221,0.06)"/>
+            <rect x="60" y="80" width="180" height="130" rx="16" fill="#fff" stroke="#a98bdd" stroke-width="2"/>
+            <path d="M90 115l30-5 20 10 20-10 30 5M90 135l30-5 20 10 20-10 30 5M90 155l30-5 20 10 20-10 30 5" stroke="#f9cf86" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="220" cy="60" r="6" fill="#f9cf86"/>
+            <circle cx="60" cy="220" r="5" fill="#b6d7a8"/>
+            <circle cx="250" cy="230" r="4" fill="#f4c2c2"/>
+          </svg>
         </div>
       </div>
-    </section>
 
-    <!-- Nos valeurs -->
-    <section class="section" style="background: #ffffff;">
-      <div class="container">
-        <h2 class="section-title">Nos valeurs</h2>
-        <div class="values-grid">
-          <div class="value-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-              <path d="M8 7h8M8 11h6"/>
-            </svg>
-            <h3>Pédagogie</h3>
-            <p>Développé avec des professionnels de l'éducation pour garantir une réelle valeur d'apprentissage dans chaque jeu.</p>
-          </div>
-          <div class="value-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-            <h3>Durabilité</h3>
-            <p>Matériaux éco-responsables et durables pour des jouets qui respectent la planète et traversent le temps.</p>
-          </div>
-          <div class="value-card">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-            <h3>Accessibilité</h3>
-            <p>Prix justes pour toutes les familles, car l'éducation de qualité ne devrait pas être un luxe.</p>
-          </div>
+      <div class="numbers-row">
+        <div class="num-item">
+          <h3>15 000+</h3>
+          <p>Enfants enchantés</p>
+        </div>
+        <div class="num-item">
+          <h3>98%</h3>
+          <p>Satisfaction client</p>
+        </div>
+        <div class="num-item">
+          <h3>10 000+</h3>
+          <p>Arbres sauvés</p>
+        </div>
+        <div class="num-item">
+          <h3>12</h3>
+          <p>Passionnés dans l'équipe</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Notre équipe -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Notre équipe</h2>
-        <div class="team-grid">
-          <div class="team-card">
-            <div class="avatar-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
-            <h3>Sophie Laurent</h3>
-            <div class="role">Fondatrice & CEO</div>
-            <p>Ancienne éditrice jeunesse, Sophie a fondé Édubini pour réconcilier jeu et apprentissage. Elle veille à ce que chaque produit raconte une histoire.</p>
-          </div>
-          <div class="team-card">
-            <div class="avatar-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
-            <h3>Marc Dubois</h3>
-            <div class="role">Responsable pédagogique</div>
-            <p>Docteur en sciences de l'éducation, Marc conçoit les mécaniques ludiques et valide chaque jeu avec des experts de la petite enfance.</p>
-          </div>
-          <div class="team-card">
-            <div class="avatar-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-            </div>
-            <h3>Léa Petit</h3>
-            <div class="role">Service client</div>
-            <p>Première interlocutrice de nos familles, Léa répond à chaque question avec patience et bienveillance. Le sourire Édubini, c'est elle.</p>
-          </div>
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="section-title">Nos valeurs</h2>
+      <p class="section-sub">Ce qui nous anime chaque jour</p>
+      <div class="values-list">
+        <div class="value-item">
+          <svg viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="20" fill="#a98bdd" opacity="0.1"/>
+            <path d="M12 28l6-16 6 16M14 24h8" stroke="#a98bdd" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <h3>Pédagogie avant tout</h3>
+          <p>Chaque cahier est conçu avec des enseignants pour suivre les programmes scolaires et respecter le rythme de chaque enfant.</p>
+        </div>
+        <div class="value-item">
+          <svg viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="20" fill="#b6d7a8" opacity="0.1"/>
+            <path d="M16 32l4-16 4 16M18 28h4" stroke="#b6d7a8" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="34" cy="14" r="2" fill="#b6d7a8"/>
+          </svg>
+          <h3>Engagement écologique</h3>
+          <p>Fabrication en Europe, papier FSC, emballages recyclables. Chaque cahier réutilisable remplace des centaines de feuilles.</p>
+        </div>
+        <div class="value-item">
+          <svg viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="20" fill="#f9cf86" opacity="0.1"/>
+            <path d="M24 14v20M14 24h20" stroke="#f9cf86" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <h3>Made in Europe</h3>
+          <p>Conçu en France, fabriqué en Europe. Nous contrôlons chaque étape de la production pour garantir qualité et éthique.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Nos chiffres -->
-    <section class="section" style="background: #ffffff;">
-      <div class="container">
-        <h2 class="section-title">Nos chiffres</h2>
-        <div class="stats-row">
-          <div class="stat-item">
-            <div class="stat-number">37k+</div>
-            <div class="stat-label">Jeux vendus</div>
+  <section class="section">
+    <div class="container">
+      <div class="ink-section">
+        <h2 class="section-title">Comment fonctionne l'encre magique ?</h2>
+        <p class="section-sub" style="margin-bottom:32px">Une technologie brevetée au service de l'apprentissage</p>
+        <div class="ink-steps">
+          <div class="ink-step">
+            <div class="num">1</div>
+            <h4>L'enfant écrit</h4>
+            <p>Avec notre stylo à encre thermosensible, l'enfant trace lettres, chiffres ou dessins sur le cahier.</p>
           </div>
-          <div class="stat-item">
-            <div class="stat-number">12k+</div>
-            <div class="stat-label">Familles</div>
+          <div class="ink-step">
+            <div class="num">2</div>
+            <h4>L'encre disparaît</h4>
+            <p>Sous l'effet de l'air ambiant, l'encre s'efface naturellement en 10 minutes. Pas de chaleur, pas de produit chimique.</p>
           </div>
-          <div class="stat-item">
-            <div class="stat-number">4.8/5</div>
-            <div class="stat-label">Note moyenne</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">30j</div>
-            <div class="stat-label">Garantie satisfait</div>
+          <div class="ink-step">
+            <div class="num">3</div>
+            <h4>Il recommence</h4>
+            <p>La page est comme neuve ! Votre enfant peut s'exercer autant de fois qu'il le souhaite, sans gaspillage.</p>
           </div>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <!-- Footer -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="section-title">Notre équipe</h2>
+      <p class="section-sub">Des passionnés au service de l'éducation</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="https://picsum.photos/seed/founder-marie/100/100" alt="Marie" loading="lazy" />
+          <h3>Marie Dubois</h3>
+          <div class="role">Fondatrice & CEO</div>
+          <p>Professeure des écoles pendant 15 ans, elle a imaginé CahierMagik dans sa classe pour réduire le gaspillage de papier.</p>
+        </div>
+        <div class="team-card">
+          <img src="https://picsum.photos/seed/founder-claire/100/100" alt="Claire" loading="lazy" />
+          <h3>Claire Lefèvre</h3>
+          <div class="role">Directrice R&D</div>
+          <p>Ingénieure chimiste, elle a développé la formule brevetée de l'encre thermosensible qui fait la magie de nos cahiers.</p>
+        </div>
+        <div class="team-card">
+          <img src="https://picsum.photos/seed/thomas-pedago/100/100" alt="Thomas" loading="lazy" />
+          <h3>Thomas Richard</h3>
+          <div class="role">Directeur pédagogique</div>
+          <p>Ancien conseiller pédagogique, il conçoit les exercices et veille à leur adéquation avec les programmes scolaires.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
-    <div class="footer-inner">
+    <div class="container">
       <div class="footer-grid">
-        <div class="footer-col">
-          <a href="index.html" class="logo" style="color:#fff;">Édubini<span style="color:#d4956a;">play</span></a>
-          <p>Édubini crée des jeux éducatifs de qualité pour éveiller la curiosité des enfants de 0 à 8 ans. Apprendre en s'amusant, c'est notre mission.</p>
+        <div>
+          <h4 style="color:#fff">CahierMagik</h4>
+          <p class="brand-desc">Des cahiers réutilisables magiques pour éveiller la curiosité des enfants de 3 à 10 ans.</p>
         </div>
-        <div class="footer-col">
-          <h4>Liens utiles</h4>
-          <a href="index.html">Accueil</a>
-<a href="collection.html">Catalogue</a>
-        <a href="about.html">À propos</a>
-        <a href="contact.html">Contact</a>
+        <div>
+          <h4>Boutique</h4>
+          <a href="collection.html">Tous les produits</a>
+          <a href="collection.html?cat=coffrets">Coffrets</a>
+          <a href="collection.html?cat=accessoires">Accessoires</a>
         </div>
-        <div class="footer-col">
-          <h4>Produits</h4>
-          <a href="#">Jeux d'éveil</a>
-          <a href="#">Puzzles</a>
-          <a href="#">Coffrets découverte</a>
-          <a href="#">Livres interactifs</a>
+        <div>
+          <h4>Aide</h4>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">À propos</a>
+          <a href="#">Livraison & retours</a>
         </div>
-        <div class="footer-col">
-          <h4>Informations légales</h4>
-          <a href="#">Mentions légales</a>
-          <a href="#">Politique de confidentialité</a>
-          <a href="#">CGV</a>
-          <a href="#">Politique de retour</a>
+        <div>
+          <h4>Paiement sécurisé</h4>
+          <div class="payment-badges">
+            <span>Visa</span><span>Mastercard</span><span>PayPal</span><span>CB</span>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 Édubini. Tous droits réservés.</span>
-        <div class="payment-badges">
-          <svg viewBox="0 0 50 32" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="1" y="2" width="48" height="28" rx="3"/>
-            <text x="25" y="20" text-anchor="middle" font-size="10" font-weight="600" fill="currentColor">CB</text>
-          </svg>
-          <svg viewBox="0 0 50 32" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="1" y="2" width="48" height="28" rx="3"/>
-            <circle cx="19" cy="16" r="8" stroke="currentColor"/>
-            <circle cx="31" cy="16" r="8" stroke="currentColor"/>
-          </svg>
-          <svg viewBox="0 0 50 32" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="1" y="2" width="48" height="28" rx="3"/>
-            <circle cx="25" cy="16" r="9" stroke="currentColor"/>
-          </svg>
-          <svg viewBox="0 0 50 32" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="1" y="2" width="48" height="28" rx="3"/>
-            <path d="M10 16h30M18 8l-6 8 6 8" stroke="currentColor"/>
-          </svg>
-        </div>
+        <a href="#" style="display:inline;margin:0 10px">CGV</a>
+        <a href="#" style="display:inline;margin:0 10px">Mentions légales</a>
+        <a href="#" style="display:inline;margin:0 10px">Politique de confidentialité</a>
+        <br><br>
+        © 2026 CahierMagik. Tous droits réservés.
       </div>
     </div>
   </footer>
 
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="products.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

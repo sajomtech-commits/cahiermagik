@@ -3,144 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Détail produit – Édubini</title>
+  <title>Produit – CahierMagik</title>
+  <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', system-ui, sans-serif;
-      background: #f8f4ee;
-      color: #2d2a24;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    /* ─────── PAGE PRODUIT ─────── */
 
-    /* ---- Top bar ---- */
-    .top-bar {
-      background: #d4956a;
-      color: #fff;
-      text-align: center;
-      padding: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    /* ---- Header ---- */
-    .header {
-      background: #fff;
-      border-bottom: 1px solid #e8e0d6;
-      padding: 16px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-      color: #7a9e6d;
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-    .logo span { color: #d4956a; }
-    .header nav { display: flex; gap: 28px; }
-    .header nav a {
-      color: #2d2a24;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .header nav a:hover { color: #d4956a; }
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .header-actions a {
-      color: #2d2a24;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .cart-icon {
-      position: relative;
-      width: 20px;
-      height: 20px;
-      display: block;
-    }
-    .cart-icon svg { width: 20px; height: 20px; }
-    .cart-count {
-      position: absolute;
-      top: -6px;
-      right: -8px;
-      background: #d4956a;
-      color: #fff;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      font-size: 10px;
-      font-weight: 700;
-      display: grid;
-      place-items: center;
-    }
-    .mobile-menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .mobile-menu-toggle svg { width: 24px; height: 24px; }
-    @media (max-width: 700px) {
-      .header nav { display: none; }
-      .mobile-menu-toggle { display: block; }
-    }
-
-    /* ---- Breadcrumb ---- */
-    .breadcrumb {
-      padding: 20px 0 8px;
-      font-size: 13px;
-      color: #88837a;
-    }
-    .breadcrumb a {
-      color: #88837a;
-      text-decoration: none;
-    }
-    .breadcrumb a:hover { color: #7a9e6d; }
-    .breadcrumb span { margin: 0 6px; }
-
-    /* ---- Product layout ---- */
-    .product {
+    .product-wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
-      padding: 24px 0 56px;
+      padding: 40px 0 60px;
     }
     @media (max-width: 860px) {
-      .product { grid-template-columns: 1fr; gap: 32px; }
+      .product-wrap { grid-template-columns: 1fr; gap: 32px; }
     }
 
-    /* ---- Gallery ---- */
+    /* Galerie */
     .gallery-main {
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
-      background: #f0ece4;
+      background: #f5efe5;
       aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: relative;
     }
     .gallery-main img {
@@ -150,6 +36,18 @@
       display: block;
       transition: opacity 0.3s;
     }
+    .gallery-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 2;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: #f4c2c2;
+      color: #2e2a28;
+    }
     .gallery-thumbs {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -158,125 +56,96 @@
     }
     .gallery-thumbs button {
       border: 2px solid transparent;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      background: #f0ece4;
+      background: #f5efe5;
       cursor: pointer;
       padding: 0;
       aspect-ratio: 1;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .gallery-thumbs button:hover { transform: scale(1.03); }
-    .gallery-thumbs button.active { border-color: #d4956a; }
+    .gallery-thumbs button:hover { transform: scale(1.04); }
+    .gallery-thumbs button.active { border-color: #a98bdd; }
     .gallery-thumbs img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    .gallery-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: #d46a4a;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 999px;
-      letter-spacing: 0.3px;
-    }
 
-    /* ---- Product info ---- */
+    /* Infos produit */
     .product-info { display: flex; flex-direction: column; gap: 20px; }
-    .product-title {
-      font-size: 28px;
-      font-weight: 700;
-      line-height: 1.25;
-      color: #2d2a24;
+    .product-info .breadcrumb {
+      font-size: 13px;
+      color: #7a736e;
     }
-    @media (max-width: 480px) {
-      .product-title { font-size: 22px; }
+    .product-info .breadcrumb a { color: #7a736e; }
+    .product-info .breadcrumb a:hover { color: #a98bdd; }
+    .product-info h1 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: clamp(24px, 3.5vw, 32px);
+      color: #2e2a28;
+      line-height: 1.2;
     }
-    .product-rating {
+    .product-info .rating-row {
       display: flex;
       align-items: center;
       gap: 8px;
       font-size: 14px;
-      color: #88837a;
+      color: #7a736e;
     }
-    .stars {
-      color: #d4956a;
-      font-size: 16px;
-      letter-spacing: 2px;
-    }
-    .stars span { color: #ddd8cf; }
+    .product-info .rating-row .stars { font-size: 16px; }
 
-    /* ---- Price ---- */
-    .price-row {
+    .product-info .price-row {
       display: flex;
       align-items: center;
       gap: 14px;
       flex-wrap: wrap;
     }
-    .price-current {
-      font-size: 32px;
-      font-weight: 800;
-      color: #2d2a24;
+    .product-info .price-row .current {
+      font-size: 34px;
+      font-weight: 700;
+      color: #2e2a28;
     }
-    .price-old {
+    .product-info .price-row .old {
       font-size: 20px;
-      color: #aaa49b;
+      color: #b5aea6;
       text-decoration: line-through;
     }
-    .price-badge {
-      background: #d4956a;
-      color: #fff;
+    .product-info .price-row .badge {
+      background: #f4c2c2;
+      color: #2e2a28;
       font-size: 12px;
       font-weight: 700;
-      padding: 4px 12px;
+      padding: 4px 14px;
       border-radius: 999px;
-      letter-spacing: 0.3px;
-    }
-    .price-note {
-      font-size: 13px;
-      color: #88837a;
-      width: 100%;
     }
 
-    /* ---- USP ---- */
-    .usp-list {
+    /* USP */
+    .usp-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-    @media (max-width: 480px) {
-      .usp-list { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 480px) { .usp-grid { grid-template-columns: 1fr; } }
     .usp-item {
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 14px;
       font-weight: 500;
-      color: #3d3a34;
+      padding: 8px 12px;
+      background: rgba(169, 139, 221, 0.06);
+      border-radius: 10px;
     }
-    .usp-item svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-    }
+    .usp-item svg { width: 20px; height: 20px; flex-shrink: 0; }
 
-    /* ---- Variant / quantity ---- */
-    .variant-section {
-      padding: 16px 0;
-      border-top: 1px solid #e8e0d6;
-    }
-    .variant-label {
+    /* Quantité */
+    .qty-section { padding: 8px 0; }
+    .qty-section .qty-label {
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 10px;
-      color: #2d2a24;
     }
     .qty-selector {
       display: flex;
@@ -286,32 +155,30 @@
       flex: 1;
       padding: 12px 0;
       border: 2px solid #e0d8ce;
-      border-radius: 10px;
+      border-radius: 12px;
       background: #fff;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', 'Poppins', sans-serif;
       font-size: 15px;
       font-weight: 600;
-      color: #2d2a24;
+      color: #2e2a28;
       cursor: pointer;
       transition: all 0.2s;
       text-align: center;
     }
-    .qty-btn:hover { border-color: #c4bcb0; }
+    .qty-btn:hover { border-color: #a98bdd; }
     .qty-btn.active {
-      border-color: #7a9e6d;
-      background: #f0f7ef;
-      color: #7a9e6d;
+      border-color: #a98bdd;
+      background: rgba(169, 139, 221, 0.08);
+      color: #a98bdd;
     }
     .qty-btn .sub {
       display: block;
       font-size: 11px;
       font-weight: 400;
-      color: #88837a;
+      color: #7a736e;
       margin-top: 2px;
     }
-    .qty-btn.active .sub { color: #7a9e6d; }
 
-    /* ---- Buy button ---- */
     .buy-btn {
       display: flex;
       align-items: center;
@@ -320,149 +187,75 @@
       width: 100%;
       padding: 18px 24px;
       border: none;
-      border-radius: 12px;
-      background: #d4956a;
+      border-radius: 14px;
+      background: #a98bdd;
       color: #fff;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', 'Poppins', sans-serif;
       font-size: 17px;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
-      box-shadow: 0 4px 14px rgba(212, 149, 106, 0.35);
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 14px rgba(169, 139, 221, 0.35);
     }
     .buy-btn:hover {
-      background: #c4855a;
+      background: #8b6ec0;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(212, 149, 106, 0.45);
+      box-shadow: 0 6px 20px rgba(169, 139, 221, 0.45);
     }
-    .buy-btn:active { transform: translateY(0); }
-    .buy-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
+    .buy-btn:active { transform: scale(0.97); }
+    .buy-btn svg { width: 20px; height: 20px; }
 
-    /* ---- Trust badges ---- */
-    .trust-row {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      padding: 8px 0;
-      font-size: 12px;
-      color: #88837a;
-    }
-    .trust-row .item {
+    .secure-note {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
+      font-size: 12px;
+      color: #7a736e;
     }
-    .trust-row svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-    }
-    .payment-icons {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      padding: 4px 0 8px;
-      flex-wrap: wrap;
-    }
-    .payment-icons .badge {
-      background: #fff;
-      border: 1px solid #e0d8ce;
-      border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 11px;
-      font-weight: 600;
-      color: #555048;
-    }
-    .social-proof {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 13px;
-      color: #7a9e6d;
-      font-weight: 600;
-      padding: 10px 0 0;
-    }
+    .secure-note svg { width: 14px; height: 14px; }
 
-    /* ---- Description ---- */
-    .section-title {
-      font-size: 20px;
-      font-weight: 700;
+    /* Description */
+    .product-description {
+      padding: 40px 0;
+      max-width: 800px;
+    }
+    .product-description h2 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 22px;
       margin-bottom: 16px;
-      color: #2d2a24;
     }
-    .description { padding: 40px 0; }
-    .description p {
+    .product-description p {
       font-size: 15px;
-      color: #3d3a34;
-      margin-bottom: 14px;
-      max-width: 780px;
+      color: #555048;
       line-height: 1.7;
+      margin-bottom: 20px;
     }
-
-    /* ---- Details grid ---- */
-    .details-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding: 16px 0 40px;
+    .product-description ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-bottom: 20px;
     }
-    @media (max-width: 600px) {
-      .details-grid { grid-template-columns: 1fr; }
-    }
-    .detail-card {
-      background: #fff;
-      border: 1px solid #e8e0d6;
-      border-radius: 12px;
-      padding: 18px 20px;
-    }
-    .detail-card h4 {
+    .product-description ul li {
       font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: #2d2a24;
-    }
-    .detail-card p {
-      font-size: 13px;
-      color: #88837a;
-      line-height: 1.5;
-    }
-
-    /* ---- Trust features ---- */
-    .features-section {
-      background: #fff;
-      border-radius: 20px;
-      padding: 40px 32px;
-      margin: 32px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 24px;
-      text-align: center;
-    }
-    .features-section .feat svg {
-      width: 36px;
-      height: 36px;
+      color: #555048;
       margin-bottom: 8px;
     }
-    .features-section .feat h4 {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .features-section .feat p {
-      font-size: 13px;
-      color: #88837a;
-    }
 
-    /* ---- FAQ ---- */
-    .faq-section { padding: 40px 0; }
-    .faq-item { border-bottom: 1px solid #e8e0d6; }
-    .faq-question {
+    /* Section aussi */
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-bottom: 40px;
+    }
+    @media (max-width: 700px) { .also-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 420px) { .also-grid { grid-template-columns: 1fr; } }
+
+    /* FAQ */
+    .faq-list { max-width: 700px; padding: 32px 0; }
+    .faq-item { border-bottom: 1px solid #e0d8ce; }
+    .faq-q {
       width: 100%;
       display: flex;
       align-items: center;
@@ -470,461 +263,357 @@
       padding: 18px 0;
       background: none;
       border: none;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', 'Poppins', sans-serif;
       font-size: 15px;
       font-weight: 600;
-      color: #2d2a24;
+      color: #2e2a28;
       cursor: pointer;
       text-align: left;
       transition: color 0.2s;
     }
-    .faq-question:hover { color: #7a9e6d; }
-    .faq-question svg {
+    .faq-q:hover { color: #a98bdd; }
+    .faq-q svg {
       width: 18px;
       height: 18px;
       flex-shrink: 0;
       transition: transform 0.3s;
     }
-    .faq-question.open svg { transform: rotate(180deg); }
-    .faq-answer {
+    .faq-q.open svg { transform: rotate(180deg); }
+    .faq-a {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease, padding 0.35s ease;
     }
-    .faq-answer p {
+    .faq-a p {
       font-size: 14px;
       color: #555048;
       padding-bottom: 18px;
       line-height: 1.6;
     }
-    .faq-answer.open { max-height: 300px; }
+    .faq-a.open { max-height: 300px; }
 
-    /* ---- Reviews ---- */
-    .reviews-section { padding: 40px 0; }
+    /* Reviews */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 32px 0;
+    }
+    @media (max-width: 700px) { .reviews-grid { grid-template-columns: 1fr; } }
     .review-card {
       background: #fff;
-      border: 1px solid #e8e0d6;
-      border-radius: 14px;
-      padding: 20px 24px;
-      max-width: 500px;
+      border: 1px solid #f0e8db;
+      border-radius: 16px;
+      padding: 20px 22px;
     }
-    .review-card .stars { font-size: 14px; margin-bottom: 8px; }
-    .review-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-    .review-card p {
+    .review-card .stars { margin-bottom: 8px; }
+    .review-card .review-text {
       font-size: 14px;
       color: #555048;
-      line-height: 1.5;
-    }
-    .review-card .author {
-      font-size: 12px;
-      color: #aaa49b;
-      margin-top: 8px;
-    }
-
-    /* ---- Footer ---- */
-    .footer {
-      background: #2d2a24;
-      color: #c4bcb0;
-      padding: 48px 0 24px;
-      margin-top: 48px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 32px;
-      padding-bottom: 32px;
-    }
-    @media (max-width: 700px) {
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-    }
-    .footer h4 {
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .footer a {
-      display: block;
-      color: #c4bcb0;
-      text-decoration: none;
-      font-size: 13px;
-      margin-bottom: 8px;
-      transition: color 0.2s;
-    }
-    .footer a:hover { color: #d4956a; }
-    .footer p {
-      font-size: 13px;
       line-height: 1.6;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+      font-style: italic;
     }
-    .footer-bottom {
-      border-top: 1px solid #3d3a34;
-      padding-top: 20px;
+    .review-card .review-author {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: 12px;
+      gap: 10px;
     }
-
-    /* ---- Toast ---- */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: #7a9e6d;
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 14px;
-      opacity: 0;
-      transition: opacity 0.3s, transform 0.3s;
-      z-index: 9999;
-      pointer-events: none;
+    .review-card .review-author img {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    .review-card .review-author strong { font-size: 13px; }
+    .review-card .review-author span {
+      font-size: 11px; color: #7a736e;
     }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">PROMO ÉTÉ : 1 acheté = 2 offerts | Livraison offerte dès 25€</div>
-
   <header class="header">
     <div class="container">
-      <a href="index.html" class="logo">Édubini<span>play</span></a>
-      <nav>
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect x="2" y="6" width="28" height="20" rx="4" fill="#a98bdd" opacity="0.2"/>
+          <path d="M8 12h16M8 17h12M8 22h14" stroke="#a98bdd" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="25" cy="10" r="4" fill="#f9cf86"/>
+        </svg>
+        CahierMagik
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <nav class="nav-links" id="nav-links">
         <a href="index.html">Accueil</a>
-        <a href="collection.html">Catalogue</a>
+        <a href="collection.html">Boutique</a>
         <a href="about.html">À propos</a>
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <a href="cart.html" class="cart-icon" aria-label="Panier">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#2d2a24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          <span class="cart-count">0</span>
+        <a href="cart.html" class="cart-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-badge" id="cart-badge">0</span>
         </a>
-        <button class="mobile-menu-toggle" aria-label="Menu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-        </button>
       </div>
     </div>
   </header>
 
-  <main class="container">
-
-    <nav class="breadcrumb">
-      <a href="index.html">Accueil</a><span>/</span>
-      <a href="collection.html">Meilleures ventes</a><span>/</span>
-      <span id="breadcrumb-name">Cahiers d'écriture magiques®</span>
-    </nav>
-
-    <div class="product">
-
-      <div class="gallery">
-        <div class="gallery-main">
-          <img id="main-image" src="" alt="" />
-          <span class="gallery-badge" id="gallery-badge">-25%</span>
-        </div>
-        <div class="gallery-thumbs" id="gallery-thumbs">
-        </div>
-      </div>
-
-      <div class="product-info">
-        <h1 class="product-title" id="product-title">Cahiers d'écriture magiques® (Coffret cadeau)</h1>
-
-        <div class="product-rating">
-          <span class="stars" id="product-stars"></span>
-          <span id="review-count">532 avis</span>
-        </div>
-
-        <div class="price-row">
-          <span class="price-current" id="price-display">29,90€</span>
-          <span class="price-old" id="price-old">39,90€</span>
-          <span class="price-badge" id="price-badge">En promo</span>
-          <span class="price-note">TTC · Livraison offerte</span>
-        </div>
-
-        <div class="usp-list" id="usp-list">
-        </div>
-
-        <div class="variant-section">
-          <div class="variant-label">Choisir la quantité :</div>
-          <div class="qty-selector" id="qty-selector">
-          </div>
-        </div>
-
-        <button class="buy-btn" id="add-to-cart">
-          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          Ajouter au panier
-        </button>
-
-        <div class="social-proof">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          + de 37 000 vendus ce mois-ci
-        </div>
-
-        <div class="trust-row">
-          <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Paiement sécurisé</span>
-          <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Garantie 30 jours</span>
-          <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Livraison offerte</span>
-        </div>
-
-        <div class="payment-icons">
-          <span class="badge">Visa</span>
-          <span class="badge">Mastercard</span>
-          <span class="badge">PayPal</span>
-          <span class="badge">Apple Pay</span>
-          <span class="badge">Klarna</span>
-          <span class="badge">Google Pay</span>
-        </div>
-      </div>
+  <section class="section" style="padding:24px 0 0">
+    <div class="container" id="product-container">
+      <!-- Rempli par JS -->
     </div>
-
-    <div class="description" id="description">
-    </div>
-
-    <div class="details-grid" id="details-grid">
-    </div>
-
-    <div class="features-section">
-      <div class="feat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        <h4>Garantie 30 jours</h4>
-        <p>Commandez sans risque – satisfait ou remboursé</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        <h4>Livraison offerte</h4>
-        <p>Dès 25€ avec suivi DHL / DPD</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <h4>Paiement sécurisé</h4>
-        <p>PayPal, Klarna, carte bancaire &amp; plus</p>
-      </div>
-      <div class="feat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <h4>Qualité certifiée</h4>
-        <p>Développé avec des pédagogues</p>
-      </div>
-    </div>
-
-    <div class="reviews-section">
-      <h2 class="section-title">Avis clients</h2>
-      <div class="review-card">
-        <div class="stars">★★★★★<span>★</span></div>
-        <h4>Mes enfants adorent !</h4>
-        <p>On voit qu'Édubini met beaucoup de soin dans ses créations. Les produits sont magnifiques ! Les enfants raffolent des motifs et l'encre magique les émerveille à chaque utilisation.</p>
-        <div class="author">– Natascha · Achat vérifié</div>
-      </div>
-    </div>
-
-    <div class="faq-section">
-      <h2 class="section-title">Questions fréquentes</h2>
-      <div id="faq-list"></div>
-    </div>
-
-  </main>
+  </section>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h4>Édubini</h4>
-          <p>Des produits éducatifs de qualité pour enfants – développés avec des pédagogues et conçus avec amour.</p>
-          <p style="margin-top:8px;">Email : <a href="mailto:support@edubini.com" style="display:inline;">support@edubini.com</a></p>
+          <h4 style="color:#fff">CahierMagik</h4>
+          <p class="brand-desc">Des cahiers réutilisables magiques pour éveiller la curiosité des enfants de 3 à 10 ans.</p>
         </div>
         <div>
-          <h4>Liens utiles</h4>
-          <a href="collection.html">Catalogue</a>
-          <a href="about.html">À propos</a>
+          <h4>Boutique</h4>
+          <a href="collection.html">Tous les produits</a>
+          <a href="collection.html?cat=coffrets">Coffrets</a>
+          <a href="collection.html?cat=accessoires">Accessoires</a>
+          <a href="collection.html?cat=cahiers">Cahiers</a>
+        </div>
+        <div>
+          <h4>Aide</h4>
           <a href="contact.html">Contact</a>
-          <a href="cart.html">Mon panier</a>
+          <a href="about.html">À propos</a>
+          <a href="#">Livraison & retours</a>
         </div>
         <div>
-          <h4>Produits</h4>
-          <a href="product.html?id=cahiers-magiques">Cahiers d'écriture</a>
-          <a href="product.html?id=microscope-educatif">Microscope</a>
-          <a href="product.html?id=journal-emotions">Journal des émotions</a>
-          <a href="product.html?id=tableau-recompenses">Tableau récompenses</a>
-        </div>
-        <div>
-          <h4>Informations légales</h4>
-          <a href="#">CGV</a>
-          <a href="#">Politique de confidentialité</a>
-          <a href="#">Mentions légales</a>
-          <a href="#">Droit de rétractation</a>
+          <h4>Paiement sécurisé</h4>
+          <div class="payment-badges">
+            <span>Visa</span><span>Mastercard</span><span>PayPal</span><span>CB</span>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 Édubini. Tous droits réservés.</span>
-        <div class="payment" style="display:flex;gap:8px;flex-wrap:wrap;">
-          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">Visa</span>
-          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">MC</span>
-          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">PayPal</span>
-          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">Klarna</span>
-          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">Apple Pay</span>
-        </div>
+        <a href="#" style="display:inline;margin:0 10px">CGV</a>
+        <a href="#" style="display:inline;margin:0 10px">Mentions légales</a>
+        <a href="#" style="display:inline;margin:0 10px">Politique de confidentialité</a>
+        <br><br>
+        © 2026 CahierMagik. Tous droits réservés.
       </div>
     </div>
   </footer>
 
-  <div class="toast" id="toast">✅ Ajouté au panier !</div>
+  <div class="toast-container" id="toast-container"></div>
 
-  <script src="main.js"></script>
   <script src="products.js"></script>
+  <script src="main.js"></script>
   <script>
-    // ---- Parse URL product id ----
-    function getParam(name) {
-      var m = window.location.search.match(new RegExp('[?&]' + name + '=([^&]*)'));
-      return m ? decodeURIComponent(m[1]) : null;
-    }
+    /* ─────── PAGE PRODUIT DYNAMIQUE ─────── */
+    let currentProduct = null;
+    let currentQty = 1;
+    let currentImage = 0;
 
-    var productId = getParam('id') || 'cahiers-magiques';
-    var product = PRODUCTS.find(function(p) { return p.id === productId; });
-    if (!product) product = PRODUCTS[0];
-
-    // ---- Page title ----
-    document.title = product.name + ' – Édubini';
-    document.getElementById('breadcrumb-name').textContent = product.name;
-
-    // ---- Stars helper ----
-    function getStarsHtml(rating) {
-      var s = '';
-      for (var i = 1; i <= 5; i++) {
-        s += i <= rating ? '\u2605' : '<span>\u2605</span>';
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'), 10);
+      if (!id || typeof STORE_PRODUCTS === 'undefined') {
+        document.getElementById('product-container').innerHTML = `
+          <div class="empty-state">
+            <h3>Produit introuvable</h3>
+            <p>Retournez à la boutique pour découvrir nos produits.</p>
+            <a href="collection.html" class="btn btn-primary">Voir la boutique</a>
+          </div>`;
+        return;
       }
-      return s;
+      currentProduct = STORE_PRODUCTS.find(p => p.id === id);
+      if (!currentProduct) {
+        document.getElementById('product-container').innerHTML = `
+          <div class="empty-state">
+            <h3>Produit introuvable</h3>
+            <p>Ce produit n'existe pas ou a été retiré.</p>
+            <a href="collection.html" class="btn btn-primary">Voir la boutique</a>
+          </div>`;
+        return;
+      }
+      renderProduct();
+      renderAlso();
+    });
+
+    function renderProduct() {
+      const p = currentProduct;
+      const starsFull = '★'.repeat(Math.floor(p.rating));
+      const starsEmpty = '★'.repeat(5 - Math.floor(p.rating));
+
+      document.getElementById('product-container').innerHTML = `
+        <div class="breadcrumb">
+          <a href="index.html">Accueil</a> / <a href="collection.html">Boutique</a> / <span>${p.name}</span>
+        </div>
+        <div class="product-wrap">
+          <div>
+            <div class="gallery-main" id="gallery-main">
+              ${p.badge ? `<span class="gallery-badge" style="background:${p.badge.type === 'sale' ? '#f4c2c2' : '#a98bdd'};color:${p.badge.type === 'sale' ? '#2e2a28' : '#fff'}">${p.badge.label}</span>` : ''}
+              <img src="${p.images[0]}" alt="${p.name}" id="main-image" />
+            </div>
+            <div class="gallery-thumbs">
+              ${p.images.map((img, i) => `
+                <button class="${i === 0 ? 'active' : ''}" onclick="switchImage(${i})">
+                  <img src="${img}" alt="" loading="lazy" />
+                </button>
+              `).join('')}
+            </div>
+          </div>
+          <div class="product-info">
+            <h1>${p.name}</h1>
+            <div class="rating-row">
+              <span class="stars">${starsFull}<span class="empty">${starsEmpty}</span></span>
+              <span>${p.rating} — ${p.reviewCount} avis</span>
+            </div>
+            <div class="price-row">
+              <span class="current" id="price-display">${p.price.toFixed(2).replace('.', ',')}€</span>
+              ${p.oldPrice ? `<span class="old">${p.oldPrice.toFixed(2).replace('.', ',')}€</span>` : ''}
+              ${p.oldPrice ? `<span class="badge">Économisez ${(p.oldPrice - p.price).toFixed(2).replace('.', ',')}€</span>` : ''}
+            </div>
+            <p style="font-size:14px;color:#7a736e;line-height:1.6">${p.description}</p>
+            <div class="usp-grid">
+              ${p.usps.map(u => `
+                <div class="usp-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#a98bdd" stroke-width="2">
+                    ${u.icon === 'star' ? '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>' : ''}
+                    ${u.icon === 'recycle' ? '<path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>' : ''}
+                    ${u.icon === 'leaf' ? '<path d="M21 3L3 21M21 3H12m9 0v9"/>' : ''}
+                    ${u.icon === 'truck' ? '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>' : ''}
+                    ${u.icon === 'heart' ? '<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>' : ''}
+                    ${u.icon === 'magic' ? '<path d="M12 3h7m-7 0L3 19l3 2 6-18zm7 0l-4 16-3 2 7-18z"/>' : ''}
+                    ${u.icon === 'hand' ? '<path d="M5 12V5a2 2 0 014 0v7m0-4a2 2 0 114 0v4m0-2a2 2 0 114 0v4M5 12V9"/>' : ''}
+                    ${u.icon === 'frame' ? '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>' : ''}
+                    ${u.icon === 'gift' ? '<polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>' : ''}
+                    ${u.icon === 'school' ? '<path d="M22 10l-10-5L2 10l10 5 10-5zM6 12v5c4 2 8 0 12-5v-5"/>' : ''}
+                  </svg>
+                  ${u.text}
+                </div>
+              `).join('')}
+            </div>
+            <div class="qty-section">
+              <div class="qty-label">Choisissez votre quantité :</div>
+              <div class="qty-selector" id="qty-selector">
+                ${[1, 2, 3].map(n => `
+                  <button class="qty-btn ${n === 1 ? 'active' : ''}" onclick="setQty(${n})">
+                    ${n} ${n === 1 ? 'coffret' : 'coffrets'}
+                    ${n > 1 ? `<span class="sub">${(p.price * n).toFixed(2).replace('.', ',')}€</span>` : ''}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+            <button class="buy-btn" onclick="addToCart(${p.id}, currentQty)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+              </svg>
+              Ajouter au panier
+            </button>
+            <div class="secure-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Paiement 100% sécurisé — Livraison offerte dès 30€
+            </div>
+          </div>
+        </div>
+        <div class="product-description">
+          <h2>Description détaillée</h2>
+          <p>${p.longDescription || p.description}</p>
+          ${p.features ? `
+            <h2>Contenu du coffret</h2>
+            <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
+          ` : ''}
+        </div>
+        <h2 class="section-title" style="font-size:22px">Questions fréquentes</h2>
+        <div class="faq-list" id="faq-list">
+          ${p.faq.map((f, i) => `
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                ${f.q}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="faq-a ${i === 0 ? 'open' : ''}"><p>${f.a}</p></div>
+            </div>
+          `).join('')}
+        </div>
+        <h2 class="section-title" style="font-size:22px;padding-top:24px">Avis clients</h2>
+        <div class="reviews-grid">
+          ${p.reviews.map(r => `
+            <div class="review-card">
+              <div class="stars">${'★'.repeat(r.rating)}${'<span class="empty">★</span>'.repeat(5 - r.rating)}</div>
+              <p class="review-text">"${r.text}"</p>
+              <div class="review-author">
+                <img src="${r.avatar}" alt="${r.name}" loading="lazy" />
+                <div><strong>${r.name}</strong><br><span>${r.date}</span></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <h2 class="section-title" style="font-size:22px">Vous aimerez aussi</h2>
+        <div class="also-grid" id="also-grid"></div>
+      `;
     }
 
-    // ---- Gallery ----
-    document.getElementById('main-image').src = product.image;
-    document.getElementById('main-image').alt = product.name;
-
-    var badge = document.getElementById('gallery-badge');
-    if (product.badge) {
-      badge.textContent = product.badge;
-    } else {
-      badge.style.display = 'none';
-    }
-
-    var thumbsContainer = document.getElementById('gallery-thumbs');
-    product.images.forEach(function(img, idx) {
-      var btn = document.createElement('button');
-      if (idx === 0) btn.className = 'active';
-      btn.dataset.img = img;
-      var imgEl = document.createElement('img');
-      imgEl.src = img.replace('width=600', 'width=200');
-      imgEl.alt = 'Image produit ' + (idx + 1);
-      btn.appendChild(imgEl);
-      btn.addEventListener('click', function() {
-        document.querySelector('#gallery-thumbs .active')?.classList.remove('active');
-        this.classList.add('active');
-        document.getElementById('main-image').src = this.dataset.img;
+    function switchImage(i) {
+      currentImage = i;
+      document.getElementById('main-image').src = currentProduct.images[i];
+      document.querySelectorAll('.gallery-thumbs button').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === i);
       });
-      thumbsContainer.appendChild(btn);
-    });
-
-    // ---- Title ----
-    document.getElementById('product-title').textContent = product.name;
-
-    // ---- Rating ----
-    document.getElementById('product-stars').innerHTML = getStarsHtml(product.rating);
-    document.getElementById('review-count').textContent = product.reviews + ' avis';
-
-    // ---- Price ----
-    function formatPrice(amount) {
-      return amount.toFixed(2).replace('.', ',') + '\u20ac';
-    }
-    document.getElementById('price-display').textContent = formatPrice(product.price);
-    document.getElementById('price-old').textContent = formatPrice(product.oldPrice);
-    document.getElementById('price-badge').textContent = product.badge;
-
-    // ---- USP list ----
-    var uspContainer = document.getElementById('usp-list');
-    product.usps.forEach(function(usp) {
-      var div = document.createElement('div');
-      div.className = 'usp-item';
-      div.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> ' + usp;
-      uspContainer.appendChild(div);
-    });
-
-    // ---- Variant / quantity selector ----
-    var qtyContainer = document.getElementById('qty-selector');
-    product.variants.forEach(function(v, idx) {
-      var btn = document.createElement('button');
-      btn.className = 'qty-btn' + (idx === 0 ? ' active' : '');
-      btn.dataset.qty = v.qty;
-      btn.dataset.price = v.price;
-      btn.dataset.old = v.oldPrice;
-      btn.innerHTML = v.label + ' <span class="sub">' + v.sub + '</span>';
-      btn.addEventListener('click', function() {
-        document.querySelector('#qty-selector .active')?.classList.remove('active');
-        this.classList.add('active');
-        document.getElementById('price-display').textContent = formatPrice(parseFloat(this.dataset.price));
-        document.getElementById('price-old').textContent = formatPrice(parseFloat(this.dataset.old));
-      });
-      qtyContainer.appendChild(btn);
-    });
-
-    // ---- Add to cart ----
-    var activeQty = 1;
-    document.getElementById('add-to-cart').addEventListener('click', function() {
-      var activeBtn = document.querySelector('#qty-selector .active');
-      var qty = activeBtn ? parseInt(activeBtn.dataset.qty) : 1;
-      var price = parseFloat(product.variants[0].price);
-      addToCart(product.id, product.name, price, product.image, qty);
-    });
-
-    // ---- Description ----
-    var desc = document.getElementById('description');
-    desc.innerHTML = '<h2 class="section-title">Description du produit</h2>' + (product.longDescription || '<p>' + product.description + '</p>');
-
-    // ---- Details grid ----
-    var detailsContainer = document.getElementById('details-grid');
-    if (product.details) {
-      product.details.forEach(function(d) {
-        var card = document.createElement('div');
-        card.className = 'detail-card';
-        card.innerHTML = '<h4>' + d.title + '</h4><p>' + d.text + '</p>';
-        detailsContainer.appendChild(card);
-      });
     }
 
-    // ---- FAQ accordion ----
-    var faqList = document.getElementById('faq-list');
-    function toggleFaq(el) {
-      var answer = el.nextElementSibling;
-      el.classList.toggle('open');
+    function setQty(n) {
+      currentQty = n;
+      document.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.textContent) === n);
+      });
+      const p = currentProduct;
+      const display = document.getElementById('price-display');
+      if (display) display.textContent = (p.price * n).toFixed(2).replace('.', ',') + '€';
+    }
+
+    function toggleFaq(btn) {
+      btn.classList.toggle('open');
+      const answer = btn.nextElementSibling;
       answer.classList.toggle('open');
     }
-    if (product.faqs) {
-      product.faqs.forEach(function(faq, idx) {
-        var item = document.createElement('div');
-        item.className = 'faq-item';
-        var isFirst = idx === 0;
-        item.innerHTML =
-          '<button class="faq-question' + (isFirst ? ' open' : '') + '" onclick="toggleFaq(this)">' +
-            faq.q +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>' +
-          '</button>' +
-          '<div class="faq-answer' + (isFirst ? ' open' : '') + '"><p>' + faq.a + '</p></div>';
-        faqList.appendChild(item);
-      });
+
+    function renderAlso() {
+      const grid = document.getElementById('also-grid');
+      if (!grid || typeof STORE_PRODUCTS === 'undefined' || !currentProduct) return;
+      const others = STORE_PRODUCTS.filter(p => p.id !== currentProduct.id).slice(0, 3);
+      grid.innerHTML = others.map(p => {
+        const starsFull = '★'.repeat(Math.floor(p.rating));
+        const starsEmpty = '★'.repeat(5 - Math.floor(p.rating));
+        const oldHtml = p.oldPrice ? `<span class="old">${p.oldPrice.toFixed(2).replace('.', ',')}€</span>` : '';
+        return `
+          <div class="product-card">
+            <a href="product.html?id=${p.id}">
+              <div class="card-img">
+                <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
+                ${p.badge ? `<span class="card-badge ${p.badge.type}">${p.badge.label}</span>` : ''}
+              </div>
+            </a>
+            <div class="card-body">
+              <div class="card-category">${p.category}</div>
+              <a href="product.html?id=${p.id}"><h3 class="card-title">${p.name}</h3></a>
+              <div class="card-rating">
+                <span class="stars">${starsFull}<span class="empty">${starsEmpty}</span></span>
+                <span>(${p.reviewCount})</span>
+              </div>
+              <div class="card-price">
+                <span class="current">${p.price.toFixed(2).replace('.', ',')}€</span>
+                ${oldHtml}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
-
-    // ---- Mobile menu toggle ----
-    document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
-      var nav = document.querySelector('.header nav');
-      if (nav) nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    });
   </script>
-
 </body>
 </html>

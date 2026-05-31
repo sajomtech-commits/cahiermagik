@@ -1,190 +1,383 @@
-const PRODUCTS = [
+/* ═══════════════════════════════════════════════════════════════════
+   CAHIERMAGIK — Données produits
+   Catalogue complet pour le site e-commerce
+   ═══════════════════════════════════════════════════════════════════ */
+
+const STORE_PRODUCTS = [
   {
-    id: "cahiers-magiques",
-    name: "Cahiers d'écriture magiques® (Coffret cadeau)",
+    id: 1,
+    name: "CahierMagik – Coffret découverte",
+    category: "coffrets",
     price: 29.90,
     oldPrice: 39.90,
-    badge: "En promo",
+    badge: { label: "Offre magique", type: "sale" },
+    rating: 4.8,
+    reviewCount: 124,
+    description: "Le coffret idéal pour découvrir la magie de l'écriture. Contient 3 cahiers réutilisables (lettres, chiffres, formes), 2 stylos magiques et 5 recharges. Offrez à votre enfant le plaisir d'apprendre sans gaspillage !",
+    longDescription: "Les cahiers CahierMagik utilisent une encre thermosensible brevetée qui disparaît après 10 minutes. Votre enfant peut écrire, effacer et recommencer à l'infini. Fini le gaspillage de papier ! Chaque coffret contient tout le nécessaire pour des heures d'apprentissage ludique.",
+    features: [
+      "3 cahiers thématiques (lettres, chiffres, formes)",
+      "2 stylos magiques avec encre violette",
+      "5 cartouches de recharge",
+      "Guide pédagogique pour les parents",
+      "Âge recommandé : 3-6 ans"
+    ],
+    images: [
+      "https://picsum.photos/seed/cahier-coffret-1/400/400",
+      "https://picsum.photos/seed/cahier-coffret-2/400/400",
+      "https://picsum.photos/seed/cahier-coffret-3/400/400",
+      "https://picsum.photos/seed/cahier-coffret-4/400/400"
+    ],
+    usps: [
+      { icon: "star", text: "Apprentissage ludique" },
+      { icon: "recycle", text: "Réutilisable à l'infini" },
+      { icon: "leaf", text: "Éco-conçu" },
+      { icon: "truck", text: "Livraison offerte" }
+    ],
+    faq: [
+      {
+        q: "Comment fonctionne l'encre magique ?",
+        a: "L'encre thermosensible disparaît au bout de 10 minutes sous l'effet de l'air ambiant. Pas de chaleur nécessaire, pas de produit chimique. Votre enfant peut écrire, voir son travail, puis recommencer."
+      },
+      {
+        q: "Quels sont les délais de livraison ?",
+        a: "La livraison standard prend 3 à 5 jours ouvrés. L'expédition est offerte dès 30€ d'achat. Nous livrons dans toute l'Europe."
+      },
+      {
+        q: "Puis-je retourner un produit ?",
+        a: "Oui, vous disposez de 30 jours pour retourner votre commande si elle ne vous convient pas. Les produits doivent être retournés dans leur emballage d'origine."
+      }
+    ],
+    reviews: [
+      {
+        name: "Sophie M.",
+        avatar: "https://picsum.photos/seed/avatar-sophie/60/60",
+        rating: 5,
+        date: "Il y a 3 semaines",
+        text: "Mon fils de 4 ans adore ces cahiers ! Il passe des heures à tracer les lettres sans se lasser. Le concept de l'encre qui disparaît le fascine."
+      },
+      {
+        name: "Thomas L.",
+        avatar: "https://picsum.photos/seed/avatar-thomas/60/60",
+        rating: 5,
+        date: "Il y a 2 semaines",
+        text: "Excellent rapport qualité-prix. Les cahiers sont solides et le stylo est facile à tenir pour les petites mains."
+      },
+      {
+        name: "Julie R.",
+        avatar: "https://picsum.photos/seed/avatar-julie/60/60",
+        rating: 4,
+        date: "Il y a 1 semaine",
+        text: "Idée géniale ! Je recommande pour préparer l'entrée en maternelle. Les exercices sont progressifs et bien conçus."
+      }
+    ]
+  },
+  {
+    id: 2,
+    name: "CahierMagik – Pack famille (2 coffrets)",
     category: "coffrets",
-    description: "Les cahiers d'écriture magiques préscolaires sont une approche innovante pour éveiller l'intérêt des enfants pour l'apprentissage de l'écriture tout en préservant l'environnement. Grâce à leur encre magique, les écrits disparaissent après 10 minutes, rendant chaque cahier réutilisable à l'infini.",
-    longDescription: `<p>Les cahiers d'écriture magiques préscolaires sont une approche innovante pour éveiller l'intérêt des enfants pour l'apprentissage de l'écriture tout en préservant l'environnement. Grâce à leur encre magique, les écrits disparaissent après 10 minutes, rendant chaque cahier réutilisable à l'infini.</p><p>Votre enfant peut écrire et apprendre encore et encore, sans aucun gaspillage de papier. Cette propriété unique transforme chaque séance d'apprentissage en une expérience passionnante et favorise l'amélioration continue de l'écriture et de la motricité fine.</p><p>Les cahiers couvrent 4 thèmes essentiels pour une rentrée scolaire réussie : les lettres, les chiffres, le calcul et le dessin. Développés avec des pédagogues, ils guident l'enfant pas à pas à travers chaque matière de manière ludique, pour un départ en douceur vers l'école.</p>`,
-    image: "https://edubini.com/cdn/shop/files/Image_49_cfopy.webp?v=1741685445&width=600",
+    price: 54.90,
+    oldPrice: 69.90,
+    badge: { label: "Économie 22%", type: "sale" },
+    rating: 4.9,
+    reviewCount: 87,
+    description: "Le pack idéal pour les fratries ou pour équiper la maison et l'école. 2 coffrets complets avec 6 cahiers, 4 stylos et 10 recharges. Parfait pour que chaque enfant ait le sien !",
+    longDescription: "Notre pack famille offre tout le nécessaire pour que deux enfants puissent apprendre simultanément. Chaque coffret contient 3 cahiers thématiques, 2 stylos et 5 recharges. L'économie réalisée par rapport à l'achat individuel vous permet d'offrir la magie à tous vos enfants.",
+    features: [
+      "2 coffrets découverte complets",
+      "6 cahiers thématiques au total",
+      "4 stylos magiques + 10 recharges",
+      "Économie de 15€ par rapport à l'achat individuel",
+      "Idéal pour fratrie ou copains"
+    ],
     images: [
-      "https://edubini.com/cdn/shop/files/Image_49_cfopy.webp?v=1741685445&width=600",
-      "https://edubini.com/cdn/shop/files/bild_heft_2.webp?v=1765292768&width=600",
-      "https://edubini.com/cdn/shop/files/Image_104_Kopie.webp?v=1765292768&width=600",
-      "https://edubini.com/cdn/shop/files/bild_heft_4.webp?v=1765292768&width=600"
+      "https://picsum.photos/seed/cahier-famille-1/400/400",
+      "https://picsum.photos/seed/cahier-famille-2/400/400",
+      "https://picsum.photos/seed/cahier-famille-3/400/400",
+      "https://picsum.photos/seed/cahier-famille-4/400/400"
     ],
-    rating: 5,
-    reviews: 532,
-    usps: ["Qualité premium", "Réutilisable après 10 min", "Écologique", "Livraison offerte"],
-    variants: [
-      { qty: 1, price: 29.90, oldPrice: 39.90, label: "1 coffret", sub: "29,90€" },
-      { qty: 2, price: 54.90, oldPrice: 69.90, label: "2 coffrets", sub: "27,45€/coffret" },
-      { qty: 3, price: 74.90, oldPrice: 99.90, label: "3 coffrets", sub: "24,97€/coffret" }
+    usps: [
+      { icon: "star", text: "Économie famille" },
+      { icon: "recycle", text: "6 cahiers réutilisables" },
+      { icon: "leaf", text: "Éco-conçu" },
+      { icon: "heart", text: "Cadeau parfait" }
     ],
-    details: [
-      { title: "Pour qui ?", text: "Enfants dès 5 ans – une préparation idéale pour l'école" },
-      { title: "Contenu", text: "18 pages par cahier · Format 18,5 × 26 cm" },
-      { title: "Matériau", text: "Papier 500 g/m² · Surface hydrofuge · Reliure à spirale" },
-      { title: "Inclus", text: "Stylo ergonomique + 5 recharges · Guide avec conseils" }
+    faq: [
+      {
+        q: "Les deux coffrets sont-ils identiques ?",
+        a: "Oui, chaque coffret contient les mêmes 3 cahiers (lettres, chiffres, formes) pour que chaque enfant puisse suivre le même programme d'apprentissage."
+      },
+      {
+        q: "Peut-on acheter des recharges d'encre séparément ?",
+        a: "Absolument ! Le 'Stylo magique + 5 recharges' est disponible dans notre boutique. Chaque recharge permet environ 20 heures d'écriture continue."
+      },
+      {
+        q: "Y a-t-il un âge minimum recommandé ?",
+        a: "Les cahiers sont conçus pour les enfants de 3 à 7 ans. Les exercices sont adaptés à chaque tranche d'âge avec une progression naturelle."
+      }
     ],
-    faqs: [
-      { q: "Comment fonctionnent les cahiers magiques ?", a: "Les cahiers utilisent une encre spéciale qui disparaît automatiquement après 10 minutes. Votre enfant peut ainsi réutiliser chaque page à l'infini. La structure en relief 3D guide le stylo et facilite l'apprentissage des bons gestes d'écriture." },
-      { q: "Comment se passe la livraison ?", a: "L'expédition se fait depuis notre entrepôt en Allemagne avec DHL ou DPD (suivi inclus). France : 2–4 jours (3,90€, offert dès 25€). Belgique & Suisse : 3–5 jours (4,90€, offert dès 50€)." },
-      { q: "Puis-je retourner les cahiers ?", a: "Oui, vous disposez de 30 jours à compter de la réception pour retourner votre commande. Les frais de retour sont de 4,90€. Contactez simplement notre service client et nous nous occupons du reste." }
+    reviews: [
+      {
+        name: "Céline D.",
+        avatar: "https://picsum.photos/seed/avatar-celine/60/60",
+        rating: 5,
+        date: "Il y a 1 mois",
+        text: "Acheté pour mes jumeaux de 4 ans. Ils ont chacun leur coffret et adorent faire leurs exercices en même temps. Un vrai jeu pour eux !"
+      },
+      {
+        name: "Marc P.",
+        avatar: "https://picsum.photos/seed/avatar-marc/60/60",
+        rating: 5,
+        date: "Il y a 3 semaines",
+        text: "Format familial très économique. Les cahiers sont de grande qualité et tiennent bien dans le temps."
+      }
     ]
   },
   {
-    id: "microscope-educatif",
-    name: "Microscope éducatif enfant",
-    price: 39.90,
-    oldPrice: 49.90,
-    badge: "Populaire",
-    category: "science",
-    description: "Un microscope adapté aux enfants dès 6 ans pour découvrir le monde fascinant de la biologie. Grossissement jusqu'à 1200x.",
-    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600&q=80",
+    id: 3,
+    name: "CahierMagik – Pack super magicien (3 coffrets)",
+    category: "coffrets",
+    price: 74.90,
+    oldPrice: 99.90,
+    badge: { label: "Économie 25%", type: "sale" },
+    rating: 5.0,
+    reviewCount: 52,
+    description: "Le pack ultime pour les super magiciens ! 3 coffrets complets : 9 cahiers, 6 stylos et 15 recharges. Idéal pour les grandes familles, les crèches ou les écoles maternelles.",
+    longDescription: "Notre pack le plus complet pour les apprentis sorciers de l'écriture. Avec 9 cahiers réutilisables, vous avez de quoi occuper toute une classe ou une grande famille. Chaque coffret couvre les fondamentaux : écriture, chiffres et formes géométriques.",
+    features: [
+      "3 coffrets complets (9 cahiers)",
+      "6 stylos magiques + 15 recharges",
+      "Économie de 25€ vs achat individuel",
+      "Parfait pour écoles et crèches",
+      "Coffret cadeau premium"
+    ],
     images: [
-      "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600&q=80",
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80"
+      "https://picsum.photos/seed/cahier-magicien-1/400/400",
+      "https://picsum.photos/seed/cahier-magicien-2/400/400",
+      "https://picsum.photos/seed/cahier-magicien-3/400/400",
+      "https://picsum.photos/seed/cahier-magicien-4/400/400"
     ],
-    rating: 4,
-    reviews: 218,
-    usps: ["Grossissement 1200x", "Lunettes LED incluses", "Coffret de lames", "Garantie 2 ans"],
-    variants: [
-      { qty: 1, price: 39.90, oldPrice: 49.90, label: "1 microscope", sub: "39,90€" },
-      { qty: 2, price: 74.90, oldPrice: 89.90, label: "2 microscopes", sub: "37,45€/pièce" }
+    usps: [
+      { icon: "star", text: "Économie max" },
+      { icon: "recycle", text: "9 cahiers réutilisables" },
+      { icon: "school", text: "Idéal collectivités" },
+      { icon: "gift", text: "Coffret prestige" }
     ],
-    details: [
-      { title: "Âge recommandé", text: "Dès 6 ans" },
-      { title: "Grossissement", text: "100x – 1200x" },
-      { title: "Alimentation", text: "Piles AAA (incluses)" },
-      { title: "Accessoires", text: "5 lames préparées + 10 lames vierges" }
+    faq: [
+      {
+        q: "Y a-t-il un tarif dégressif pour les écoles ?",
+        a: "Oui, nous proposons des tarifs spéciaux pour les établissements scolaires et les crèches. Contactez-nous via notre formulaire pour un devis personnalisé."
+      },
+      {
+        q: "Peut-on utiliser ces cahiers avec d'autres stylos ?",
+        a: "Non, seuls nos stylos à encre thermosensible fonctionnent. Nous les fournissons dans chaque coffret avec des recharges de rechange."
+      }
     ],
-    faqs: [
-      { q: "Le microscope est-il facile à utiliser ?", a: "Oui, la mise au point est simplifiée et la platine de préparation est adaptée aux petites mains. Le manuel illustré guide l'enfant pas à pas." },
-      { q: "Quels sont les modes d'observation ?", a: "Le microscope propose 3 niveaux de grossissement (100x, 600x, 1200x) avec un éclairage LED réglable." }
+    reviews: [
+      {
+        name: "Émilie T.",
+        avatar: "https://picsum.photos/seed/avatar-emilie/60/60",
+        rating: 5,
+        date: "Il y a 2 mois",
+        text: "Utilisés dans ma classe de maternelle, les enfants sont captivés ! La directrice va commander pour toute l'école."
+      },
+      {
+        name: "Nicolas B.",
+        avatar: "https://picsum.photos/seed/avatar-nicolas/60/60",
+        rating: 5,
+        date: "Il y a 1 mois",
+        text: "Génial pour nos 3 enfants. Chacun a son coffret et ils s'amusent à faire les exercices ensemble."
+      }
     ]
   },
   {
-    id: "journal-emotions",
-    name: "Journal des émotions",
+    id: 4,
+    name: "Stylo magique + 5 recharges",
+    category: "accessoires",
+    price: 9.90,
+    oldPrice: 14.90,
+    badge: { label: "Éco-recharge", type: "eco" },
+    rating: 4.6,
+    reviewCount: 203,
+    description: "Le stylo magique supplémentaire ou de remplacement pour vos cahiers CahierMagik. Ergonomique, adapté aux petites mains, avec 5 cartouches de recharge. L'encre violette disparaît en 10 minutes.",
+    longDescription: "Notre stylo magique est conçu spécialement pour les mains des enfants : grip ergonomique, pointe adaptée à l'apprentissage du geste d'écriture, capuchon sécurisé. Chaque recharge permet environ 20 heures d'écriture continue. L'encre thermosensible disparaît naturellement en 10 minutes.",
+    features: [
+      "Stylo ergonomique pour enfants",
+      "5 cartouches de recharge incluses",
+      "Encre violette thermosensible",
+      "Disparaît en 10 minutes",
+      "Âge recommandé : 3+"
+    ],
+    images: [
+      "https://picsum.photos/seed/stylo-magique-1/400/400",
+      "https://picsum.photos/seed/stylo-magique-2/400/400",
+      "https://picsum.photos/seed/stylo-magique-3/400/400",
+      "https://picsum.photos/seed/stylo-magique-4/400/400"
+    ],
+    usps: [
+      { icon: "magic", text: "Rechargeable" },
+      { icon: "hand", text: "Design ergonomique" },
+      { icon: "leaf", text: "Éco-conçu" },
+      { icon: "truck", text: "Livraison offerte" }
+    ],
+    faq: [
+      {
+        q: "L'encre est-elle toxique ?",
+        a: "Non, notre encre thermosensible est totalement non-toxique et sans danger pour les enfants. Elle est certifiée conforme aux normes européennes de sécurité (CE)."
+      },
+      {
+        q: "Combien de temps dure une recharge ?",
+        a: "Chaque cartouche permet environ 20 heures d'écriture continue, soit plusieurs semaines d'utilisation pour un enfant."
+      },
+      {
+        q: "Le stylo fonctionne-t-il avec tous les cahiers ?",
+        a: "Oui, il est compatible avec tous nos cahiers CahierMagik ainsi qu'avec les tableaux effaçables de la marque."
+      }
+    ],
+    reviews: [
+      {
+        name: "Aurélie K.",
+        avatar: "https://picsum.photos/seed/avatar-aurelie/60/60",
+        rating: 5,
+        date: "Il y a 2 semaines",
+        text: "Très bon stylo, ma fille le tient bien mieux qu'un stylo classique. Les recharges durent longtemps."
+      },
+      {
+        name: "Romain S.",
+        avatar: "https://picsum.photos/seed/avatar-romain/60/60",
+        rating: 4,
+        date: "Il y a 1 mois",
+        text: "Pratique d'avoir des recharges supplémentaires. Le stylo est solide même après plusieurs semaines d'utilisation intensive."
+      },
+      {
+        name: "Carine F.",
+        avatar: "https://picsum.photos/seed/avatar-carine/60/60",
+        rating: 5,
+        date: "Il y a 3 jours",
+        text: "Idéal pour compléter le coffret découverte. Mon fils a perdu son premier stylo, content d'avoir pu le remplacer rapidement."
+      }
+    ]
+  },
+  {
+    id: 5,
+    name: "Poster alphabet effaçable",
+    category: "accessoires",
+    price: 12.90,
+    oldPrice: 19.90,
+    badge: { label: "Nouveau", type: "magic" },
+    rating: 4.7,
+    reviewCount: 38,
+    description: "Un grand poster A2 effaçable avec l'alphabet illustré. Accroché au mur, votre enfant peut tracer les lettres au stylo magique et recommencer à l'infini. Un outil pédagogique magnifique pour la chambre !",
+    longDescription: "Notre poster alphabet transforme l'apprentissage en jeu quotidien. Chaque lettre est illustrée par un dessin enfantin (A comme Abracadabra, B comme Baguette magique...). Le poster est laminé et s'utilise avec nos stylos magiques. Inclus : kit de fixation murale.",
+    features: [
+      "Format A2 (42×59,4 cm)",
+      "Alphabet illustré façon abécédaire",
+      "Surface effaçable réutilisable",
+      "Kit de fixation murale inclus",
+      "Âge recommandé : 3-7 ans"
+    ],
+    images: [
+      "https://picsum.photos/seed/poster-alphabet-1/400/400",
+      "https://picsum.photos/seed/poster-alphabet-2/400/400",
+      "https://picsum.photos/seed/poster-alphabet-3/400/400",
+      "https://picsum.photos/seed/poster-alphabet-4/400/400"
+    ],
+    usps: [
+      { icon: "magic", text: "Abécédaire illustré" },
+      { icon: "recycle", text: "Réutilisable" },
+      { icon: "frame", text: "Déco chambre" },
+      { icon: "heart", text: "Apprentissage ludique" }
+    ],
+    faq: [
+      {
+        q: "Quel stylo utiliser avec le poster ?",
+        a: "Le poster est compatible avec tous nos stylos magiques vendus séparément ou dans les coffrets. L'encre disparaît en 10 minutes."
+      },
+      {
+        q: "Le poster peut-il être encadré ?",
+        a: "Oui, il est aux dimensions standards A2 et peut être encadré. Sa surface laminée permet une utilisation quotidienne sans s'abîmer."
+      },
+      {
+        q: "Les fixations sont-elles incluses ?",
+        a: "Oui, un kit de fixation adapté à tous types de murs est fourni avec le poster."
+      }
+    ],
+    reviews: [
+      {
+        name: "Laure N.",
+        avatar: "https://picsum.photos/seed/avatar-laure/60/60",
+        rating: 5,
+        date: "Il y a 2 semaines",
+        text: "Magnifique poster ! Ma fille l'a accroché dans sa chambre et s'entraîne chaque jour à écrire les lettres. Les illustrations sont adorables."
+      },
+      {
+        name: "Vincent G.",
+        avatar: "https://picsum.photos/seed/avatar-vincent/60/60",
+        rating: 4,
+        date: "Il y a 1 semaine",
+        text: "Très belle qualité d'impression. Le format est généreux, les lettres bien lisibles. Mon fils de 5 ans adore."
+      }
+    ]
+  },
+  {
+    id: 6,
+    name: "Cahier de dessin magique",
+    category: "cahiers",
     price: 19.90,
-    oldPrice: 24.90,
-    badge: "Nouveau",
-    category: "bien-etre",
-    description: "Un journal intime guidé pour aider les enfants à comprendre et exprimer leurs émotions de manière positive et créative.",
-    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80",
-      "https://images.unsplash.com/photo-1587876931567-564ce588bfbd?w=600&q=80"
-    ],
-    rating: 5,
-    reviews: 147,
-    usps: ["Développement émotionnel", "Activités guidées", "Autocollants inclus", "Dès 4 ans"],
-    variants: [
-      { qty: 1, price: 19.90, oldPrice: 24.90, label: "1 journal", sub: "19,90€" },
-      { qty: 2, price: 34.90, oldPrice: 44.90, label: "2 journaux", sub: "17,45€/pièce" },
-      { qty: 3, price: 49.90, oldPrice: 64.90, label: "3 journaux", sub: "16,63€/pièce" }
-    ],
-    details: [
-      { title: "Âge recommandé", text: "Dès 4 ans" },
-      { title: "Format", text: "21 × 15 cm · 64 pages" },
-      { title: "Contenu", text: "30 activités + stickers émotions" },
-      { title: "Conçu avec", text: "Pédopsychiatre et éducateurs" }
-    ],
-    faqs: [
-      { q: "Comment ce journal aide-t-il mon enfant ?", a: "Chaque page propose une activité ludique pour identifier et nommer l'émotion ressentie. Le journal aide à développer l'intelligence émotionnelle et la confiance en soi." }
-    ]
-  },
-  {
-    id: "tableau-recompenses",
-    name: "Tableau de récompenses magnétique",
-    price: 24.90,
     oldPrice: 29.90,
-    badge: "Meilleure vente",
-    category: "coffrets",
-    description: "Un tableau magnétique ludique pour encourager les bonnes habitudes et la routine quotidienne des enfants.",
-    image: "https://images.unsplash.com/photo-1584697964407-1aa8e1f6a1e3?w=600&q=80",
+    badge: { label: "Nouveauté", type: "magic" },
+    rating: 4.9,
+    reviewCount: 67,
+    description: "Le cahier de dessin qui se transforme en livre d'artiste ! 30 pages épaisses avec des modèles à reproduire et des espaces libres pour laisser libre cours à l'imagination. Dessins, coloriages, gribouillages magiques !",
+    longDescription: "Bien plus qu'un simple cahier de coloriage : chaque page propose une activité créative différente. Dessins guidés, points à relier, coloriages magiques (les motifs apparaissent au passage du stylo !) et pages blanches pour les chefs-d'œuvre de votre enfant. 32 pages en papier épais 200g.",
+    features: [
+      "32 pages en papier 200g (couverture rigide)",
+      "Activités : dessins guidés, coloriages, points à relier",
+      "Pages à motif magique (apparaît au contact du stylo)",
+      "Couverture rigide avec ferreture élastique",
+      "Âge recommandé : 4-10 ans"
+    ],
     images: [
-      "https://images.unsplash.com/photo-1584697964407-1aa8e1f6a1e3?w=600&q=80",
-      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80"
+      "https://picsum.photos/seed/cahier-dessin-1/400/400",
+      "https://picsum.photos/seed/cahier-dessin-2/400/400",
+      "https://picsum.photos/seed/cahier-dessin-3/400/400",
+      "https://picsum.photos/seed/cahier-dessin-4/400/400"
     ],
-    rating: 4,
-    reviews: 305,
-    usps: ["Tableau magnétique", "50 aimants inclus", "Routine quotidienne", "Réutilisable"],
-    variants: [
-      { qty: 1, price: 24.90, oldPrice: 29.90, label: "1 tableau", sub: "24,90€" },
-      { qty: 2, price: 44.90, oldPrice: 54.90, label: "2 tableaux", sub: "22,45€/pièce" }
+    usps: [
+      { icon: "star", text: "Créativité débordante" },
+      { icon: "recycle", text: "Réutilisable" },
+      { icon: "leaf", text: "Papier certifié FSC" },
+      { icon: "gift", text: "Cadeau idéal" }
     ],
-    details: [
-      { title: "Âge recommandé", text: "Dès 3 ans" },
-      { title: "Format", text: "45 × 32 cm" },
-      { title: "Contenu", text: "Tableau + 50 aimants + feutre" },
-      { title: "Thèmes", text: "Habitudes, école, maison, hygiène" }
+    faq: [
+      {
+        q: "Ce cahier est-il compatible avec les stylos classiques ?",
+        a: "Non, il est conçu pour être utilisé avec nos stylos à encre magique. L'encre classique ne disparaîtrait pas et les motifs magiques ne sont visibles qu'avec notre encre spéciale."
+      },
+      {
+        q: "Combien de temps dure une page ?",
+        a: "Chaque page peut être utilisée des centaines de fois. L'encre disparaît en 10 minutes, ce qui permet à votre enfant de dessiner, voir son œuvre, et recommencer."
+      },
+      {
+        q: "Quels sont les thèmes des dessins ?",
+        a: "Le cahier contient des thèmes variés : animaux magiques, châteaux, sirènes, dinosaures, espace, nature. De quoi plaire à tous les goûts !"
+      }
     ],
-    faqs: [
-      { q: "Comment utiliser le tableau ?", a: "Fixez le tableau au mur ou au frigo. L'enfant déplace les aimants au fur et à mesure de ses accomplissements. À la fin de la semaine, comptez les points ensemble !" }
-    ]
-  },
-  {
-    id: "puzzle-alphabet",
-    name: "Puzzle alphabet en bois",
-    price: 14.90,
-    oldPrice: 18.90,
-    badge: "-21%",
-    category: "apprentissage",
-    description: "Un puzzle alphabet en bois naturel pour apprendre les lettres en s'amusant. Chaque lettre est une pièce à encastrer.",
-    image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&q=80",
-      "https://images.unsplash.com/photo-1596063876637-2b2c8c0e6a3f?w=600&q=80"
-    ],
-    rating: 4,
-    reviews: 89,
-    usps: ["Bois certifié FSC", "26 lettres", "Peinture non toxique", "Dès 2 ans"],
-    variants: [
-      { qty: 1, price: 14.90, oldPrice: 18.90, label: "1 puzzle", sub: "14,90€" },
-      { qty: 2, price: 26.90, oldPrice: 34.90, label: "2 puzzles", sub: "13,45€/pièce" }
-    ],
-    details: [
-      { title: "Âge recommandé", text: "Dès 2 ans" },
-      { title: "Matériau", text: "Bois d'érable certifié FSC" },
-      { title: "Dimensions", text: "30 × 30 cm" },
-      { title: "Sécurité", text: "Peinture à l'eau non toxique" }
-    ],
-    faqs: [
-      { q: "Est-ce adapté aux tout-petits ?", a: "Oui, les pièces sont larges (5 cm) et faciles à attraper. Le bois est léger et les bords sont arrondis." }
-    ]
-  },
-  {
-    id: "horloge-apprentissage",
-    name: "Horloge d'apprentissage interactive",
-    price: 22.90,
-    oldPrice: 27.90,
-    badge: "Populaire",
-    category: "apprentissage",
-    description: "Une horloge interactive colorée pour apprendre à lire l'heure de façon ludique. Avec aiguilles mobiles et cadran magnétique.",
-    image: "https://images.unsplash.com/photo-1594322436404-5e0526f3e7c3?w=600&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1594322436404-5e0526f3e7c3?w=600&q=80",
-      "https://images.unsplash.com/photo-1563861826100-9cb8680ae0f6?w=600&q=80"
-    ],
-    rating: 4,
-    reviews: 176,
-    usps: ["Aiguilles mobiles", "Cadran magnétique", "Dès 5 ans", "Guide inclus"],
-    variants: [
-      { qty: 1, price: 22.90, oldPrice: 27.90, label: "1 horloge", sub: "22,90€" },
-      { qty: 2, price: 39.90, oldPrice: 49.90, label: "2 horloges", sub: "19,95€/pièce" }
-    ],
-    details: [
-      { title: "Âge recommandé", text: "Dès 5 ans" },
-      { title: "Format", text: "25 × 25 cm" },
-      { title: "Fonctionnalités", text: "Aiguilles mobiles + aimants" },
-      { title: "Inclus", text: "Guide d'apprentissage offert" }
-    ],
-    faqs: [
-      { q: "Mon enfant peut-il apprendre seul ?", a: "Le cadran gradué et les couleurs facilitent l'apprentissage en autonomie. Le guide propose 10 leçons progressives." }
+    reviews: [
+      {
+        name: "Manon P.",
+        avatar: "https://picsum.photos/seed/avatar-manon/60/60",
+        rating: 5,
+        date: "Il y a 5 jours",
+        text: "Ma fille de 6 ans passe des heures à dessiner. Les pages à motifs magiques sont bluffantes, on voit le dessin apparaître comme par enchantement !"
+      },
+      {
+        name: "Alexandre W.",
+        avatar: "https://picsum.photos/seed/avatar-alex/60/60",
+        rating: 5,
+        date: "Il y a 2 semaines",
+        text: "Super concept ! Mon fils qui n'aime pas le coloriage classique a complètement accroché. Le fait que le dessin 'apparaisse' le motive énormément."
+      }
     ]
   }
 ];

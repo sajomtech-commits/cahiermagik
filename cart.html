@@ -3,556 +3,266 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mon panier – Édubini</title>
+  <title>Panier – CahierMagik</title>
+  <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', system-ui, sans-serif;
-      background: #f8f4ee;
-      color: #2d2a24;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    /* ─────── PAGE PANIER ─────── */
 
-    /* ---- Top bar ---- */
-    .top-bar {
-      background: #d4956a;
-      color: #fff;
-      text-align: center;
-      padding: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    /* ---- Header ---- */
-    .header {
-      background: #fff;
-      border-bottom: 1px solid #e8e0d6;
-      padding: 16px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-      color: #7a9e6d;
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-    .logo span { color: #d4956a; }
-    .header nav { display: flex; gap: 28px; }
-    .header nav a {
-      color: #2d2a24;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .header nav a:hover { color: #d4956a; }
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .header-actions a {
-      color: #2d2a24;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .cart-icon {
-      position: relative;
-      width: 20px;
-      height: 20px;
-      display: block;
-    }
-    .cart-icon svg { width: 20px; height: 20px; }
-    .cart-count {
-      position: absolute;
-      top: -6px;
-      right: -8px;
-      background: #d4956a;
-      color: #fff;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      font-size: 10px;
-      font-weight: 700;
-      display: grid;
-      place-items: center;
-    }
-
-    /* ---- Mobile ---- */
-    .mobile-menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .mobile-menu-toggle svg { width: 24px; height: 24px; }
-    @media (max-width: 700px) {
-      .header nav { display: none; }
-      .mobile-menu-toggle { display: block; }
-    }
-
-    /* ---- Breadcrumb ---- */
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: #88837a;
-      margin: 24px 0 8px;
-    }
-    .breadcrumb a {
-      color: #88837a;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .breadcrumb a:hover { color: #d4956a; }
-    .breadcrumb .sep { color: #ccc5bb; }
-
-    /* ---- Page title ---- */
-    .page-title {
-      font-size: 32px;
-      font-weight: 800;
-      margin-bottom: 24px;
-      color: #2d2a24;
-    }
-
-    /* ---- Cart layout ---- */
     .cart-layout {
       display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 32px;
-      margin: 24px 0 40px;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      padding: 40px 0 60px;
+      align-items: start;
     }
-    @media (max-width: 800px) {
+    @media (max-width: 860px) {
       .cart-layout { grid-template-columns: 1fr; }
     }
 
-    /* ---- Cart items ---- */
-    .cart-items { list-style: none; }
-    .cart-item {
-      display: flex;
-      gap: 16px;
-      background: #fff;
-      border-radius: 16px;
-      padding: 16px;
-      margin-bottom: 12px;
-      align-items: center;
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .cart-table thead th {
+      text-align: left;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #7a736e;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e0d8ce;
+    }
+    .cart-table tbody tr {
+      border-bottom: 1px solid #f0e8db;
+    }
+    .cart-table tbody td {
+      padding: 18px 8px 18px 0;
+      vertical-align: middle;
     }
     .cart-item-img {
-      width: 80px;
-      height: 80px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .cart-item-img img {
+      width: 72px;
+      height: 72px;
       border-radius: 12px;
       object-fit: cover;
       flex-shrink: 0;
-      background: #f0ece4;
     }
-    .cart-item-info {
-      flex: 1;
-      min-width: 0;
-    }
-    .cart-item-info h4 {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-    .cart-item-info .item-price {
+    .cart-item-img strong {
       font-size: 14px;
-      color: #88837a;
+      display: block;
+      margin-bottom: 4px;
     }
-
-    /* ---- Qty controls ---- */
-    .qty-controls {
+    .cart-item-img .cart-item-price {
+      font-size: 13px;
+      color: #7a736e;
+    }
+    .qty-control {
       display: inline-flex;
       align-items: center;
       gap: 0;
-      border: 1px solid #e8e0d6;
+      border: 2px solid #e0d8ce;
       border-radius: 10px;
       overflow: hidden;
-      margin-top: 8px;
     }
-    .qty-controls button {
+    .qty-control button {
       width: 36px;
       height: 36px;
       border: none;
       background: #f8f4ee;
-      font-family: 'Poppins', sans-serif;
       font-size: 18px;
       font-weight: 600;
-      color: #2d2a24;
+      color: #2e2a28;
       cursor: pointer;
       transition: background 0.15s;
+      font-family: 'Inter', 'Poppins', sans-serif;
     }
-    .qty-controls button:hover { background: #e8e0d6; }
-    .qty-controls .qty-val {
+    .qty-control button:hover { background: #e0d8ce; }
+    .qty-control span {
       width: 40px;
       text-align: center;
-      font-size: 14px;
-      font-weight: 600;
-      font-family: 'Poppins', sans-serif;
-      background: #fff;
-      border: none;
-      border-left: 1px solid #e8e0d6;
-      border-right: 1px solid #e8e0d6;
-      padding: 6px 0;
-    }
-
-    .cart-item-line {
-      text-align: right;
-      flex-shrink: 0;
-    }
-    .cart-item-line .line-total {
-      font-size: 17px;
       font-weight: 700;
-      color: #2d2a24;
-      white-space: nowrap;
+      font-size: 14px;
     }
-    .cart-item-remove {
-      display: block;
+    .cart-item-total {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .cart-remove {
       background: none;
       border: none;
-      color: #aaa49b;
-      font-family: 'Poppins', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
+      color: #c4bcb0;
+      font-size: 18px;
       cursor: pointer;
-      margin-top: 4px;
+      padding: 4px 8px;
       transition: color 0.2s;
     }
-    .cart-item-remove:hover { color: #c0392b; }
+    .cart-remove:hover { color: #d46a4a; }
 
-    /* ---- Summary ---- */
     .cart-summary {
       background: #fff;
-      border-radius: 16px;
-      padding: 24px;
+      border: 1px solid #f0e8db;
+      border-radius: 20px;
+      padding: 28px 24px;
       position: sticky;
       top: 100px;
     }
     .cart-summary h3 {
-      font-size: 18px;
-      font-weight: 700;
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 20px;
       margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #e8e0d6;
     }
-    .summary-row {
+    .cart-summary-row {
       display: flex;
       justify-content: space-between;
       font-size: 14px;
-      margin-bottom: 12px;
       color: #555048;
+      padding: 8px 0;
     }
-    .summary-row.total {
-      font-size: 18px;
-      font-weight: 700;
-      color: #2d2a24;
-      border-top: 1px solid #e8e0d6;
-      padding-top: 16px;
-      margin-top: 8px;
-    }
-    .summary-row .free { color: #7a9e6d; font-weight: 600; }
-    .checkout-btn {
-      width: 100%;
-      padding: 16px;
-      background: #d4956a;
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.15s;
-      box-shadow: 0 4px 14px rgba(212,149,106,0.35);
-      margin-top: 20px;
-    }
-    .checkout-btn:hover { background: #c4855a; transform: translateY(-2px); }
-
-    /* ---- Empty state ---- */
-    .cart-empty {
-      text-align: center;
-      padding: 80px 20px;
-    }
-    .cart-empty svg {
-      width: 64px;
-      height: 64px;
-      stroke: #ccc5bb;
-      margin-bottom: 20px;
-    }
-    .cart-empty h3 {
+    .cart-summary-total {
       font-size: 20px;
       font-weight: 700;
-      color: #2d2a24;
-      margin-bottom: 8px;
+      color: #2e2a28;
+      border-top: 2px solid #f0e8db;
+      margin-top: 8px;
+      padding-top: 16px;
     }
-    .cart-empty p {
-      font-size: 14px;
-      color: #88837a;
-      margin-bottom: 24px;
+    .cart-summary-note {
+      font-size: 12px;
+      color: #b6d7a8;
+      font-weight: 600;
+      padding: 8px 0;
+      text-align: center;
     }
-    .cart-empty a {
+    .cart-secure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #7a736e;
+      margin-top: 12px;
+    }
+    .cart-continue {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      background: #d4956a;
-      color: #fff;
-      border-radius: 12px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background 0.25s, transform 0.15s;
-      box-shadow: 0 4px 14px rgba(212,149,106,0.35);
-    }
-    .cart-empty a:hover { background: #c4855a; transform: translateY(-2px); }
-
-    /* ---- Footer ---- */
-    .footer {
-      background: #2d2a24;
-      color: #c4bcb0;
-      padding: 48px 0 24px;
-      margin-top: 48px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 32px;
-      padding-bottom: 32px;
-    }
-    @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; } }
-    .footer h4 {
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .footer a {
-      display: block;
-      color: #c4bcb0;
-      text-decoration: none;
+      gap: 6px;
       font-size: 13px;
-      margin-bottom: 8px;
-      transition: color 0.2s;
+      color: #a98bdd;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 16px;
+      padding: 24px 0;
     }
-    .footer a:hover { color: #d4956a; }
-    .footer p {
-      font-size: 13px;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-    .footer-bottom {
-      border-top: 1px solid #3d3a34;
-      padding-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: 12px;
-    }
-    .footer-bottom img { height: 20px; }
+    .cart-continue:hover { color: #8b6ec0; }
   </style>
 </head>
 <body>
 
-<div class="top-bar">PROMO ÉTÉ : 1 acheté = 2 offerts | Livraison offerte dès 25€</div>
-
-<header class="header">
-  <div class="container">
-    <a href="index.html" class="logo">Édubini<span>play</span></a>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="collection.html">Catalogue</a>
-      <a href="about.html">À propos</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="header-actions">
-      <a href="cart.html" class="cart-icon" aria-label="Panier">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#2d2a24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        <span class="cart-count">0</span>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect x="2" y="6" width="28" height="20" rx="4" fill="#a98bdd" opacity="0.2"/>
+          <path d="M8 12h16M8 17h12M8 22h14" stroke="#a98bdd" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="25" cy="10" r="4" fill="#f9cf86"/>
+        </svg>
+        CahierMagik
       </a>
-      <button class="mobile-menu-toggle" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
-    </div>
-  </div>
-</header>
-
-<main class="container">
-
-  <div class="breadcrumb">
-    <a href="index.html">Accueil</a>
-    <span class="sep">/</span>
-    <span>Panier</span>
-  </div>
-
-  <h1 class="page-title">Mon panier</h1>
-
-  <div id="cart-root"></div>
-
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h4>Édubini</h4>
-        <p>Des produits éducatifs de qualité pour enfants – développés avec des pédagogues et conçus avec amour.</p>
-        <p style="margin-top:8px;">Email : <a href="mailto:support@edubini.com" style="display:inline;">support@edubini.com</a></p>
-      </div>
-      <div>
-        <h4>Liens utiles</h4>
-        <a href="collection.html">Catalogue</a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="collection.html">Boutique</a>
         <a href="about.html">À propos</a>
         <a href="contact.html">Contact</a>
-        <a href="cart.html">Mon panier</a>
-      </div>
-      <div>
-        <h4>Produits</h4>
-        <a href="product.html?id=cahiers-magiques">Cahiers d'écriture</a>
-        <a href="product.html?id=microscope-educatif">Microscope</a>
-        <a href="product.html?id=journal-emotions">Journal des émotions</a>
-        <a href="product.html?id=tableau-recompenses">Tableau récompenses</a>
-      </div>
-      <div>
-        <h4>Informations légales</h4>
-        <a href="#">CGV</a>
-        <a href="#">Politique de confidentialité</a>
-        <a href="#">Mentions légales</a>
-        <a href="#">Droit de rétractation</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 Édubini. Tous droits réservés.</span>
-      <div class="payment" style="display:flex;gap:8px;flex-wrap:wrap;">
-        <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">Visa</span>
-        <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">MC</span>
-        <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">PayPal</span>
-        <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">Klarna</span>
-        <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">Apple Pay</span>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Votre panier</h1>
+      <p>Les articles que vous avez choisis</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="cart-layout">
+        <div id="cart-container">
+          <!-- Rempli par renderCartPage() via main.js -->
+        </div>
+      </div>
+      <a href="collection.html" class="cart-continue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
+        Continuer mes achats
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4 style="color:#fff">CahierMagik</h4>
+          <p class="brand-desc">Des cahiers réutilisables magiques pour éveiller la curiosité des enfants de 3 à 10 ans.</p>
+        </div>
+        <div>
+          <h4>Boutique</h4>
+          <a href="collection.html">Tous les produits</a>
+          <a href="collection.html?cat=coffrets">Coffrets</a>
+          <a href="collection.html?cat=accessoires">Accessoires</a>
+        </div>
+        <div>
+          <h4>Aide</h4>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">À propos</a>
+          <a href="#">Livraison & retours</a>
+        </div>
+        <div>
+          <h4>Paiement sécurisé</h4>
+          <div class="payment-badges">
+            <span>Visa</span><span>Mastercard</span><span>PayPal</span><span>CB</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="#" style="display:inline;margin:0 10px">CGV</a>
+        <a href="#" style="display:inline;margin:0 10px">Mentions légales</a>
+        <a href="#" style="display:inline;margin:0 10px">Politique de confidentialité</a>
+        <br><br>
+        © 2026 CahierMagik. Tous droits réservés.
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="main.js"></script>
-<script>
-  function renderCart() {
-    var root = document.getElementById('cart-root');
-    if (!root) return;
-    var cart = getCart();
+  <div class="toast-container" id="toast-container"></div>
 
-    if (cart.length === 0) {
-      root.innerHTML =
-        '<div class="cart-empty">' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>' +
-        '<h3>Votre panier est vide</h3>' +
-        '<p>D\u00e9couvrez nos produits \u00e9ducatifs et faites le plein de d\u00e9couvertes !</p>' +
-        '<a href="collection.html">D\u00e9couvrir nos produits</a>' +
-        '</div>';
-      return;
-    }
-
-    var subtotal = 0;
-    var itemsHtml = cart.map(function(item) {
-      var lineTotal = item.price * item.qty;
-      subtotal += lineTotal;
-      var img = item.image || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=100&q=80';
-      return (
-        '<li class="cart-item" data-id="' + item.id + '">' +
-          '<img class="cart-item-img" src="' + img + '" alt="' + (item.name || '').replace(/"/g,'&quot;') + '" loading="lazy" />' +
-          '<div class="cart-item-info">' +
-            '<h4>' + (item.name || 'Produit') + '</h4>' +
-            '<div class="item-price">' + formatPrice(item.price) + '</div>' +
-            '<div class="qty-controls">' +
-              '<button class="qty-minus" data-id="' + item.id + '">\u2212</button>' +
-              '<span class="qty-val" data-id="' + item.id + '">' + item.qty + '</span>' +
-              '<button class="qty-plus" data-id="' + item.id + '">+</button>' +
-            '</div>' +
-          '</div>' +
-          '<div class="cart-item-line">' +
-            '<div class="line-total">' + formatPrice(lineTotal) + '</div>' +
-            '<button class="cart-item-remove" data-id="' + item.id + '">Supprimer</button>' +
-          '</div>' +
-        '</li>'
-      );
-    }).join('');
-
-    var shipping = subtotal >= 25 ? 0 : 4.90;
-    var total = subtotal + shipping;
-
-    root.innerHTML =
-      '<div class="cart-layout">' +
-        '<div>' +
-          '<ul class="cart-items">' + itemsHtml + '</ul>' +
-        '</div>' +
-        '<div class="cart-summary">' +
-          '<h3>R\u00e9sum\u00e9 de la commande</h3>' +
-          '<div class="summary-row"><span>Sous-total</span><span>' + formatPrice(subtotal) + '</span></div>' +
-          '<div class="summary-row"><span>Livraison</span><span' + (shipping === 0 ? ' class="free"' : '') + '>' + (shipping === 0 ? 'Gratuite' : formatPrice(shipping)) + '</span></div>' +
-          '<div class="summary-row total"><span>Total</span><span>' + formatPrice(total) + '</span></div>' +
-          '<button class="checkout-btn" id="checkout-btn">Passer la commande</button>' +
-        '</div>' +
-      '</div>';
-
-    /* ---- Event delegation for qty / remove / checkout ---- */
-    root.querySelector('.checkout-btn')?.addEventListener('click', function() {
-      clearCart();
-      showToast('\u2705 Commande pass\u00e9e avec succ\u00e8s ! Merci de votre confiance.');
+  <script src="products.js"></script>
+  <script src="main.js"></script>
+  <script>
+    // Le renderCartPage() est appelé par main.js au DOMContentLoaded
+    // Sur cette page, on force aussi le rendu quand products.js est chargé
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof STORE_PRODUCTS !== 'undefined') renderCartPage();
     });
-
-    root.querySelectorAll('.qty-minus').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var id = btn.getAttribute('data-id');
-        var item = getCart().find(function(i) { return i.id === id; });
-        if (item) updateQuantity(id, item.qty - 1);
-      });
-    });
-
-    root.querySelectorAll('.qty-plus').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var id = btn.getAttribute('data-id');
-        var item = getCart().find(function(i) { return i.id === id; });
-        if (item) updateQuantity(id, item.qty + 1);
-      });
-    });
-
-    root.querySelectorAll('.cart-item-remove').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        removeFromCart(btn.getAttribute('data-id'));
-      });
-    });
-  }
-
-  window.renderCart = renderCart;
-
-  document.addEventListener('DOMContentLoaded', renderCart);
-
-  document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
-    var nav = document.querySelector('.header nav');
-    if (nav) nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-  });
-</script>
+  </script>
 </body>
 </html>
