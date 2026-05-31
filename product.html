@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Détail produit – Édubini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+      background: #f8f4ee;
+      color: #2d2a24;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---- Top bar ---- */
+    .top-bar {
+      background: #d4956a;
+      color: #fff;
+      text-align: center;
+      padding: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ---- Header ---- */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #e8e0d6;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #7a9e6d;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: #d4956a; }
+    .header nav { display: flex; gap: 28px; }
+    .header nav a {
+      color: #2d2a24;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .header nav a:hover { color: #d4956a; }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-actions a {
+      color: #2d2a24;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .cart-icon {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+    .cart-icon svg { width: 20px; height: 20px; }
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: #d4956a;
+      color: #fff;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+    }
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .mobile-menu-toggle svg { width: 24px; height: 24px; }
+    @media (max-width: 700px) {
+      .header nav { display: none; }
+      .mobile-menu-toggle { display: block; }
+    }
+
+    /* ---- Breadcrumb ---- */
+    .breadcrumb {
+      padding: 20px 0 8px;
+      font-size: 13px;
+      color: #88837a;
+    }
+    .breadcrumb a {
+      color: #88837a;
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: #7a9e6d; }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* ---- Product layout ---- */
+    .product {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 24px 0 56px;
+    }
+    @media (max-width: 860px) {
+      .product { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* ---- Gallery ---- */
+    .gallery-main {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #f0ece4;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s;
+    }
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .gallery-thumbs button {
+      border: 2px solid transparent;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f0ece4;
+      cursor: pointer;
+      padding: 0;
+      aspect-ratio: 1;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .gallery-thumbs button:hover { transform: scale(1.03); }
+    .gallery-thumbs button.active { border-color: #d4956a; }
+    .gallery-thumbs img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #d46a4a;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ---- Product info ---- */
+    .product-info { display: flex; flex-direction: column; gap: 20px; }
+    .product-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #2d2a24;
+    }
+    @media (max-width: 480px) {
+      .product-title { font-size: 22px; }
+    }
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #88837a;
+    }
+    .stars {
+      color: #d4956a;
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+    .stars span { color: #ddd8cf; }
+
+    /* ---- Price ---- */
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .price-current {
+      font-size: 32px;
+      font-weight: 800;
+      color: #2d2a24;
+    }
+    .price-old {
+      font-size: 20px;
+      color: #aaa49b;
+      text-decoration: line-through;
+    }
+    .price-badge {
+      background: #d4956a;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+    }
+    .price-note {
+      font-size: 13px;
+      color: #88837a;
+      width: 100%;
+    }
+
+    /* ---- USP ---- */
+    .usp-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 480px) {
+      .usp-list { grid-template-columns: 1fr; }
+    }
+    .usp-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #3d3a34;
+    }
+    .usp-item svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    /* ---- Variant / quantity ---- */
+    .variant-section {
+      padding: 16px 0;
+      border-top: 1px solid #e8e0d6;
+    }
+    .variant-label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #2d2a24;
+    }
+    .qty-selector {
+      display: flex;
+      gap: 10px;
+    }
+    .qty-btn {
+      flex: 1;
+      padding: 12px 0;
+      border: 2px solid #e0d8ce;
+      border-radius: 10px;
+      background: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #2d2a24;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .qty-btn:hover { border-color: #c4bcb0; }
+    .qty-btn.active {
+      border-color: #7a9e6d;
+      background: #f0f7ef;
+      color: #7a9e6d;
+    }
+    .qty-btn .sub {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: #88837a;
+      margin-top: 2px;
+    }
+    .qty-btn.active .sub { color: #7a9e6d; }
+
+    /* ---- Buy button ---- */
+    .buy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 18px 24px;
+      border: none;
+      border-radius: 12px;
+      background: #d4956a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
+      box-shadow: 0 4px 14px rgba(212, 149, 106, 0.35);
+    }
+    .buy-btn:hover {
+      background: #c4855a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 149, 106, 0.45);
+    }
+    .buy-btn:active { transform: translateY(0); }
+    .buy-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* ---- Trust badges ---- */
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding: 8px 0;
+      font-size: 12px;
+      color: #88837a;
+    }
+    .trust-row .item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .trust-row svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 4px 0 8px;
+      flex-wrap: wrap;
+    }
+    .payment-icons .badge {
+      background: #fff;
+      border: 1px solid #e0d8ce;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #555048;
+    }
+    .social-proof {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #7a9e6d;
+      font-weight: 600;
+      padding: 10px 0 0;
+    }
+
+    /* ---- Description ---- */
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #2d2a24;
+    }
+    .description { padding: 40px 0; }
+    .description p {
+      font-size: 15px;
+      color: #3d3a34;
+      margin-bottom: 14px;
+      max-width: 780px;
+      line-height: 1.7;
+    }
+
+    /* ---- Details grid ---- */
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 16px 0 40px;
+    }
+    @media (max-width: 600px) {
+      .details-grid { grid-template-columns: 1fr; }
+    }
+    .detail-card {
+      background: #fff;
+      border: 1px solid #e8e0d6;
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .detail-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #2d2a24;
+    }
+    .detail-card p {
+      font-size: 13px;
+      color: #88837a;
+      line-height: 1.5;
+    }
+
+    /* ---- Trust features ---- */
+    .features-section {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 32px;
+      margin: 32px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      text-align: center;
+    }
+    .features-section .feat svg {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 8px;
+    }
+    .features-section .feat h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .features-section .feat p {
+      font-size: 13px;
+      color: #88837a;
+    }
+
+    /* ---- FAQ ---- */
+    .faq-section { padding: 40px 0; }
+    .faq-item { border-bottom: 1px solid #e8e0d6; }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #2d2a24;
+      cursor: pointer;
+      text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: #7a9e6d; }
+    .faq-question svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .faq-question.open svg { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-answer p {
+      font-size: 14px;
+      color: #555048;
+      padding-bottom: 18px;
+      line-height: 1.6;
+    }
+    .faq-answer.open { max-height: 300px; }
+
+    /* ---- Reviews ---- */
+    .reviews-section { padding: 40px 0; }
+    .review-card {
+      background: #fff;
+      border: 1px solid #e8e0d6;
+      border-radius: 14px;
+      padding: 20px 24px;
+      max-width: 500px;
+    }
+    .review-card .stars { font-size: 14px; margin-bottom: 8px; }
+    .review-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .review-card p {
+      font-size: 14px;
+      color: #555048;
+      line-height: 1.5;
+    }
+    .review-card .author {
+      font-size: 12px;
+      color: #aaa49b;
+      margin-top: 8px;
+    }
+
+    /* ---- Footer ---- */
+    .footer {
+      background: #2d2a24;
+      color: #c4bcb0;
+      padding: 48px 0 24px;
+      margin-top: 48px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+      padding-bottom: 32px;
+    }
+    @media (max-width: 700px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    }
+    .footer h4 {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .footer a {
+      display: block;
+      color: #c4bcb0;
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: #d4956a; }
+    .footer p {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .footer-bottom {
+      border-top: 1px solid #3d3a34;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    /* ---- Toast ---- */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #7a9e6d;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">PROMO ÉTÉ : 1 acheté = 2 offerts | Livraison offerte dès 25€</div>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">Édubini<span>play</span></a>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="collection.html">Catalogue</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-icon" aria-label="Panier">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2d2a24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count">0</span>
+        </a>
+        <button class="mobile-menu-toggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <nav class="breadcrumb">
+      <a href="index.html">Accueil</a><span>/</span>
+      <a href="collection.html">Meilleures ventes</a><span>/</span>
+      <span id="breadcrumb-name">Cahiers d'écriture magiques®</span>
+    </nav>
+
+    <div class="product">
+
+      <div class="gallery">
+        <div class="gallery-main">
+          <img id="main-image" src="" alt="" />
+          <span class="gallery-badge" id="gallery-badge">-25%</span>
+        </div>
+        <div class="gallery-thumbs" id="gallery-thumbs">
+        </div>
+      </div>
+
+      <div class="product-info">
+        <h1 class="product-title" id="product-title">Cahiers d'écriture magiques® (Coffret cadeau)</h1>
+
+        <div class="product-rating">
+          <span class="stars" id="product-stars"></span>
+          <span id="review-count">532 avis</span>
+        </div>
+
+        <div class="price-row">
+          <span class="price-current" id="price-display">29,90€</span>
+          <span class="price-old" id="price-old">39,90€</span>
+          <span class="price-badge" id="price-badge">En promo</span>
+          <span class="price-note">TTC · Livraison offerte</span>
+        </div>
+
+        <div class="usp-list" id="usp-list">
+        </div>
+
+        <div class="variant-section">
+          <div class="variant-label">Choisir la quantité :</div>
+          <div class="qty-selector" id="qty-selector">
+          </div>
+        </div>
+
+        <button class="buy-btn" id="add-to-cart">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Ajouter au panier
+        </button>
+
+        <div class="social-proof">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          + de 37 000 vendus ce mois-ci
+        </div>
+
+        <div class="trust-row">
+          <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Paiement sécurisé</span>
+          <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Garantie 30 jours</span>
+          <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Livraison offerte</span>
+        </div>
+
+        <div class="payment-icons">
+          <span class="badge">Visa</span>
+          <span class="badge">Mastercard</span>
+          <span class="badge">PayPal</span>
+          <span class="badge">Apple Pay</span>
+          <span class="badge">Klarna</span>
+          <span class="badge">Google Pay</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="description" id="description">
+    </div>
+
+    <div class="details-grid" id="details-grid">
+    </div>
+
+    <div class="features-section">
+      <div class="feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <h4>Garantie 30 jours</h4>
+        <p>Commandez sans risque – satisfait ou remboursé</p>
+      </div>
+      <div class="feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <h4>Livraison offerte</h4>
+        <p>Dès 25€ avec suivi DHL / DPD</p>
+      </div>
+      <div class="feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <h4>Paiement sécurisé</h4>
+        <p>PayPal, Klarna, carte bancaire &amp; plus</p>
+      </div>
+      <div class="feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h4>Qualité certifiée</h4>
+        <p>Développé avec des pédagogues</p>
+      </div>
+    </div>
+
+    <div class="reviews-section">
+      <h2 class="section-title">Avis clients</h2>
+      <div class="review-card">
+        <div class="stars">★★★★★<span>★</span></div>
+        <h4>Mes enfants adorent !</h4>
+        <p>On voit qu'Édubini met beaucoup de soin dans ses créations. Les produits sont magnifiques ! Les enfants raffolent des motifs et l'encre magique les émerveille à chaque utilisation.</p>
+        <div class="author">– Natascha · Achat vérifié</div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <h2 class="section-title">Questions fréquentes</h2>
+      <div id="faq-list"></div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Édubini</h4>
+          <p>Des produits éducatifs de qualité pour enfants – développés avec des pédagogues et conçus avec amour.</p>
+          <p style="margin-top:8px;">Email : <a href="mailto:support@edubini.com" style="display:inline;">support@edubini.com</a></p>
+        </div>
+        <div>
+          <h4>Liens utiles</h4>
+          <a href="collection.html">Catalogue</a>
+          <a href="about.html">À propos</a>
+          <a href="contact.html">Contact</a>
+          <a href="cart.html">Mon panier</a>
+        </div>
+        <div>
+          <h4>Produits</h4>
+          <a href="product.html?id=cahiers-magiques">Cahiers d'écriture</a>
+          <a href="product.html?id=microscope-educatif">Microscope</a>
+          <a href="product.html?id=journal-emotions">Journal des émotions</a>
+          <a href="product.html?id=tableau-recompenses">Tableau récompenses</a>
+        </div>
+        <div>
+          <h4>Informations légales</h4>
+          <a href="#">CGV</a>
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">Mentions légales</a>
+          <a href="#">Droit de rétractation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Édubini. Tous droits réservés.</span>
+        <div class="payment" style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">Visa</span>
+          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">MC</span>
+          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">PayPal</span>
+          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">Klarna</span>
+          <span class="badge" style="background:#3d3a34;color:#c4bcb0;border:1px solid #555048;padding:4px 10px;border-radius:4px;font-size:10px;font-weight:600;">Apple Pay</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">✅ Ajouté au panier !</div>
+
+  <script src="main.js"></script>
+  <script src="products.js"></script>
+  <script>
+    // ---- Parse URL product id ----
+    function getParam(name) {
+      var m = window.location.search.match(new RegExp('[?&]' + name + '=([^&]*)'));
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+
+    var productId = getParam('id') || 'cahiers-magiques';
+    var product = PRODUCTS.find(function(p) { return p.id === productId; });
+    if (!product) product = PRODUCTS[0];
+
+    // ---- Page title ----
+    document.title = product.name + ' – Édubini';
+    document.getElementById('breadcrumb-name').textContent = product.name;
+
+    // ---- Stars helper ----
+    function getStarsHtml(rating) {
+      var s = '';
+      for (var i = 1; i <= 5; i++) {
+        s += i <= rating ? '\u2605' : '<span>\u2605</span>';
+      }
+      return s;
+    }
+
+    // ---- Gallery ----
+    document.getElementById('main-image').src = product.image;
+    document.getElementById('main-image').alt = product.name;
+
+    var badge = document.getElementById('gallery-badge');
+    if (product.badge) {
+      badge.textContent = product.badge;
+    } else {
+      badge.style.display = 'none';
+    }
+
+    var thumbsContainer = document.getElementById('gallery-thumbs');
+    product.images.forEach(function(img, idx) {
+      var btn = document.createElement('button');
+      if (idx === 0) btn.className = 'active';
+      btn.dataset.img = img;
+      var imgEl = document.createElement('img');
+      imgEl.src = img.replace('width=600', 'width=200');
+      imgEl.alt = 'Image produit ' + (idx + 1);
+      btn.appendChild(imgEl);
+      btn.addEventListener('click', function() {
+        document.querySelector('#gallery-thumbs .active')?.classList.remove('active');
+        this.classList.add('active');
+        document.getElementById('main-image').src = this.dataset.img;
+      });
+      thumbsContainer.appendChild(btn);
+    });
+
+    // ---- Title ----
+    document.getElementById('product-title').textContent = product.name;
+
+    // ---- Rating ----
+    document.getElementById('product-stars').innerHTML = getStarsHtml(product.rating);
+    document.getElementById('review-count').textContent = product.reviews + ' avis';
+
+    // ---- Price ----
+    function formatPrice(amount) {
+      return amount.toFixed(2).replace('.', ',') + '\u20ac';
+    }
+    document.getElementById('price-display').textContent = formatPrice(product.price);
+    document.getElementById('price-old').textContent = formatPrice(product.oldPrice);
+    document.getElementById('price-badge').textContent = product.badge;
+
+    // ---- USP list ----
+    var uspContainer = document.getElementById('usp-list');
+    product.usps.forEach(function(usp) {
+      var div = document.createElement('div');
+      div.className = 'usp-item';
+      div.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#7a9e6d" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> ' + usp;
+      uspContainer.appendChild(div);
+    });
+
+    // ---- Variant / quantity selector ----
+    var qtyContainer = document.getElementById('qty-selector');
+    product.variants.forEach(function(v, idx) {
+      var btn = document.createElement('button');
+      btn.className = 'qty-btn' + (idx === 0 ? ' active' : '');
+      btn.dataset.qty = v.qty;
+      btn.dataset.price = v.price;
+      btn.dataset.old = v.oldPrice;
+      btn.innerHTML = v.label + ' <span class="sub">' + v.sub + '</span>';
+      btn.addEventListener('click', function() {
+        document.querySelector('#qty-selector .active')?.classList.remove('active');
+        this.classList.add('active');
+        document.getElementById('price-display').textContent = formatPrice(parseFloat(this.dataset.price));
+        document.getElementById('price-old').textContent = formatPrice(parseFloat(this.dataset.old));
+      });
+      qtyContainer.appendChild(btn);
+    });
+
+    // ---- Add to cart ----
+    var activeQty = 1;
+    document.getElementById('add-to-cart').addEventListener('click', function() {
+      var activeBtn = document.querySelector('#qty-selector .active');
+      var qty = activeBtn ? parseInt(activeBtn.dataset.qty) : 1;
+      var price = parseFloat(product.variants[0].price);
+      addToCart(product.id, product.name, price, product.image, qty);
+    });
+
+    // ---- Description ----
+    var desc = document.getElementById('description');
+    desc.innerHTML = '<h2 class="section-title">Description du produit</h2>' + (product.longDescription || '<p>' + product.description + '</p>');
+
+    // ---- Details grid ----
+    var detailsContainer = document.getElementById('details-grid');
+    if (product.details) {
+      product.details.forEach(function(d) {
+        var card = document.createElement('div');
+        card.className = 'detail-card';
+        card.innerHTML = '<h4>' + d.title + '</h4><p>' + d.text + '</p>';
+        detailsContainer.appendChild(card);
+      });
+    }
+
+    // ---- FAQ accordion ----
+    var faqList = document.getElementById('faq-list');
+    function toggleFaq(el) {
+      var answer = el.nextElementSibling;
+      el.classList.toggle('open');
+      answer.classList.toggle('open');
+    }
+    if (product.faqs) {
+      product.faqs.forEach(function(faq, idx) {
+        var item = document.createElement('div');
+        item.className = 'faq-item';
+        var isFirst = idx === 0;
+        item.innerHTML =
+          '<button class="faq-question' + (isFirst ? ' open' : '') + '" onclick="toggleFaq(this)">' +
+            faq.q +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>' +
+          '</button>' +
+          '<div class="faq-answer' + (isFirst ? ' open' : '') + '"><p>' + faq.a + '</p></div>';
+        faqList.appendChild(item);
+      });
+    }
+
+    // ---- Mobile menu toggle ----
+    document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
+      var nav = document.querySelector('.header nav');
+      if (nav) nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    });
+  </script>
+
+</body>
+</html>
