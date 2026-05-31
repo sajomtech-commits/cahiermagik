@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Livraison & Retours – CahierMagik</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .legal-page { padding: 60px 0; }
+    .legal-page h1 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: clamp(28px, 4vw, 36px);
+      margin-bottom: 40px;
+      color: #a98bdd;
+    }
+    .legal-page h2 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 20px;
+      margin: 32px 0 12px;
+      color: #2e2a28;
+    }
+    .legal-page h3 {
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 17px;
+      margin: 24px 0 8px;
+      color: #2e2a28;
+    }
+    .legal-page p, .legal-page li {
+      font-size: 15px;
+      color: #55504a;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .legal-page ul { padding-left: 24px; list-style: disc; }
+    .legal-page li { margin-bottom: 6px; }
+    .legal-page .last-update {
+      font-size: 13px;
+      color: #8a837a;
+      margin-bottom: 32px;
+    }
+    .legal-section {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid #f0e8db;
+    }
+    .shipping-box {
+      background: rgba(169, 139, 221, 0.06);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 16px 0;
+    }
+    .shipping-box h3 { margin-top: 0; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    table th, table td { border: 1px solid #f0e8db; padding: 12px 16px; text-align: left; }
+    table th { background: rgba(169, 139, 221, 0.08); font-weight: 600; color: #2e2a28; }
+    table td { color: #55504a; }
+    .step-list { counter-reset: step; }
+    .step-list li {
+      counter-increment: step;
+      padding-left: 40px;
+      position: relative;
+      margin-bottom: 16px;
+      list-style: none;
+    }
+    .step-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      background: #a98bdd;
+      color: #fff;
+      font-family: 'Fredoka One', 'Poppins', sans-serif;
+      font-size: 14px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+    .faq-item { border-bottom: 1px solid #f0e8db; }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      background: none;
+      border: none;
+      font-family: 'Inter', 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #2e2a28;
+      cursor: pointer;
+      text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: #a98bdd; }
+    .faq-question svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .faq-question.open svg { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-answer p {
+      font-size: 14px;
+      color: #55504a;
+      padding-bottom: 18px;
+      line-height: 1.6;
+    }
+    .faq-answer.open { max-height: 300px; }
+    @media (max-width: 600px) {
+      .legal-section { padding: 24px 20px; }
+      table { font-size: 13px; }
+      table th, table td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect x="2" y="6" width="28" height="20" rx="4" fill="#a98bdd" opacity="0.2"/>
+          <path d="M8 12h16M8 17h12M8 22h14" stroke="#a98bdd" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="25" cy="10" r="4" fill="#f9cf86"/>
+        </svg>
+        CahierMagik
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="collection.html">Boutique</a>
+        <a href="about.html">À propos</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="legal-page">
+    <div class="container">
+      <h1>Livraison & Retours</h1>
+      <p class="last-update">Dernière mise à jour : 31 mai 2026</p>
+      <div class="legal-section">
+
+        <h2>Livraison</h2>
+        <p>Chez CahierMagik, nous expédions toutes les commandes sous <strong>24 à 48 heures ouvrées</strong> après validation du paiement. Vous recevez un email de confirmation avec un numéro de suivi dès l'envoi de votre colis.</p>
+
+        <h3>Tarifs et délais</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Zone de livraison</th>
+              <th>Mode d'expédition</th>
+              <th>Délai estimé</th>
+              <th>Tarif</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="2"><strong>France métropolitaine</strong></td>
+              <td>Lettre suivie</td>
+              <td>3 à 5 jours ouvrés</td>
+              <td><strong>Offerte</strong> dès 30 € · sinon 3,90 €</td>
+            </tr>
+            <tr>
+              <td>Colissimo</td>
+              <td>2 à 3 jours ouvrés</td>
+              <td>4,90 €</td>
+            </tr>
+            <tr>
+              <td><strong>Belgique, Luxembourg</strong></td>
+              <td>Colissimo Europe</td>
+              <td>4 à 6 jours ouvrés</td>
+              <td>5,90 €</td>
+            </tr>
+            <tr>
+              <td><strong>Suisse</strong></td>
+              <td>Colissimo Europe</td>
+              <td>5 à 8 jours ouvrés</td>
+              <td>7,90 €</td>
+            </tr>
+            <tr>
+              <td><strong>Autres pays européens</strong></td>
+              <td>Colissimo Europe</td>
+              <td>7 à 12 jours ouvrés</td>
+              <td>9,90 €</td>
+            </tr>
+            <tr>
+              <td><strong>DOM-TOM</strong></td>
+              <td>Colissimo Outre-Mer</td>
+              <td>10 à 15 jours ouvrés</td>
+              <td>14,90 €</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="shipping-box">
+          <h3>🪄 Livraison offerte</h3>
+          <p>La livraison en lettre suivie est <strong>offerte</strong> dès 30 € d'achat en France métropolitaine. Aucun code promo nécessaire — c'est automatique !</p>
+        </div>
+
+        <h3>Suivi de commande</h3>
+        <p>Dès l'expédition, vous recevez un email contenant votre numéro de suivi (ex : 7A 123 456 789 12). Vous pouvez suivre votre colis à tout moment sur le site de La Poste : <a href="https://www.laposte.fr/outils/suivre" target="_blank" rel="noopener" style="color:#a98bdd;text-decoration:underline">laposte.fr/suivi</a>.</p>
+
+        <h3>Que faire en cas de problème ?</h3>
+        <ul>
+          <li><strong>Colis non reçu après le délai estimé :</strong> contactez-nous via le formulaire de contact et nous ouvrirons une enquête auprès du transporteur. Si le colis est déclaré perdu, nous vous remboursons ou réexpédions sous 48h.</li>
+          <li><strong>Colis endommagé :</strong> prenez une photo du colis et de son contenu, puis contactez-nous. Nous vous renvoyons l'article sans frais.</li>
+          <li><strong>Adresse erronée :</strong> si vous constatez une erreur après validation, contactez-nous immédiatement. Une fois expédié, nous ne pouvons pas modifier l'adresse.</li>
+        </ul>
+
+        <h2>Retours & Remboursements</h2>
+        <p>Vous n'êtes pas satisfait ? Pas d'inquiétude — nous facilitons les retours au maximum. Vous disposez d'un <strong>délai de 14 jours</strong> à compter de la réception de votre commande pour nous retourner les articles.</p>
+
+        <h3>Procédure de retour</h3>
+        <ol class="step-list">
+          <li><strong>Contactez-nous</strong> par email à <strong>bonjour@cahiermagik.com</strong> ou via le <a href="contact.html" style="color:#a98bdd;text-decoration:underline">formulaire de contact</a> en indiquant votre numéro de commande et les articles à retourner.</li>
+          <li><strong>Emballez les articles</strong> dans leur emballage d'origine, en bon état, accompagnés de tous les accessoires.</li>
+          <li><strong>Expédiez le colis</strong> à l'adresse suivante :<br>
+          CahierMagik – Retours<br>
+          42 Rue des Écoles, 75005 Paris, France</li>
+          <li><strong>Remboursement</strong> sous 14 jours ouvrés après réception et vérification des articles. Le remboursement est effectué via le même moyen de paiement que celui utilisé pour l'achat.</li>
+        </ol>
+
+        <div class="shipping-box">
+          <h3>⚠️ Conditions de retour</h3>
+          <ul>
+            <li>Les articles doivent être retournés dans leur état d'origine, non utilisés et dans leur emballage intact.</li>
+            <li>Les frais de retour sont à la charge du client (4,90 € forfaitaires en France métropolitaine), sauf en cas de défaut, d'erreur de notre part ou de produit endommagé.</li>
+            <li>Pour les commandes offertes livrées gratuitement, les frais de retour restent à votre charge.</li>
+            <li>Les stylos magiques et recharges d'encre ne peuvent être retournés que s'ils sont scellés (raisons d'hygiène).</li>
+          </ul>
+        </div>
+
+        <h3>Délai de rétractation</h3>
+        <p>Conformément à l'article L.221-18 du Code de la Consommation, vous disposez de <strong>14 jours</strong> à compter de la réception pour exercer votre droit de rétractation sans avoir à justifier de motif. Passé ce délai, aucun retour ne pourra être accepté, sauf garantie légale de conformité (articles L.217-4 à L.217-14 du Code de la Consommation).</p>
+
+        <h3>Garantie légale de conformité</h3>
+        <p>Si votre produit présente un défaut de fabrication ou ne correspond pas à sa description, la <strong>garantie légale de conformité</strong> s'applique pendant <strong>2 ans</strong> à compter de la livraison. Dans ce cas, les frais de retour sont pris en charge par CahierMagik et le produit sera réparé, échangé ou remboursé selon votre choix. Contactez-nous pour obtenir un bon de retour prépayé.</p>
+
+        <!-- FAQ accordéon -->
+        <h2 style="margin-top:48px">Questions fréquentes</h2>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Mon colis est en retard, que faire ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer"><p>Si votre colis dépasse le délai estimé, commencez par vérifier le suivi sur le site de La Poste. Si aucune mise à jour depuis 48h, contactez-nous avec votre numéro de suivi. Nous ouvrons une enquête sous 24h et vous proposons un ré-envoi ou un remboursement sous 48h.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Puis-je retourner un produit après plus de 14 jours ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer"><p>Au-delà des 14 jours de rétractation, nous acceptons les retours dans le cadre de la garantie légale de conformité (si le produit présente un défaut) jusqu'à 2 ans après la livraison. Pour un simple changement d'avis, nous ne pouvons malheureusement pas accepter les retours après 14 jours. Merci de votre compréhension.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Puis-je retourner un stylo magique déjà utilisé ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer"><p>Pour des raisons d'hygiène et de contrôle qualité, les stylos magiques et recharges d'encre ne peuvent être retournés que s'ils sont encore scellés dans leur emballage d'origine. S'ils ont été ouverts ou utilisés, le retour ne sera pas accepté sauf en cas de défaut de fabrication (encre qui ne disparaît pas, fuite, etc.).</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Quand vais-je recevoir mon remboursement ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer"><p>Le remboursement est effectué sous 14 jours ouvrés maximum après réception et vérification du colis retourné. Le délai moyen est de 5 à 7 jours ouvrés. Le remboursement est crédité sur le même moyen de paiement que celui utilisé pour l'achat. Vous recevrez un email de confirmation.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Les frais de retour sont-ils remboursés ?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer"><p>Les frais de retour sont à votre charge (4,90 € forfaitaires en France métropolitaine), sauf en cas d'erreur de notre part (mauvais produit expédié, défaut de fabrication, colis endommagé). Dans ce cas, nous vous fournissons une étiquette de retour prépayée. Les frais de retour ne sont pas remboursés pour un simple changement d'avis.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>CahierMagik</h4>
+          <p class="brand-desc">Des cahiers réutilisables magiques pour éveiller la curiosité des enfants de 3 à 10 ans. Apprendre sans gaspiller, grandir en s'amusant.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+            <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12c0 5.1 3.2 9.4 7.6 11.2-.1-1-.2-2.4 0-3.4l1.3-5.6s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.7 1.3 1.5 0 .9-.6 2.2-.8 3.4-.2 1 .5 1.8 1.6 1.8 1.9 0 3.4-2 3.4-4.9 0-2.6-1.9-4.4-4.6-4.4-3.1 0-4.9 2.3-4.9 4.7 0 .9.4 1.9.8 2.5.1.1.1.3 0 .4l-.3 1.2c-.1.3-.3.4-.5.3-1.9-.9-3.1-3.6-3.1-5.8 0-4.7 3.4-9 9.8-9 5.1 0 9.1 3.6 9.1 8.5 0 5.1-3.2 8.6-7.7 8.6-1.5 0-2.9-.8-3.4-1.7l-.9 3.4c-.3 1.2-1.2 2.7-1.8 3.6 1.4.4 2.8.6 4.3.6 6.6 0 12-5.4 12-12S18.6 0 12 0z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4>Boutique</h4>
+          <a href="collection.html">Tous les produits</a>
+          <a href="collection.html?cat=coffrets">Coffrets</a>
+          <a href="collection.html?cat=accessoires">Accessoires</a>
+          <a href="collection.html?cat=cahiers">Cahiers</a>
+        </div>
+        <div>
+          <h4>Aide</h4>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">À propos</a>
+          <a href="livraison-retours.html">Livraison & retours</a>
+          <a href="#">FAQ</a>
+        </div>
+        <div>
+          <h4>Paiement sécurisé</h4>
+          <div class="payment-badges">
+            <span>Visa</span>
+            <span>Mastercard</span>
+            <span>PayPal</span>
+            <span>CB</span>
+            <span>Apple Pay</span>
+          </div>
+          <p style="font-size:12px;color:#8a837a;margin-top:12px;line-height:1.5">Paiement 100% sécurisé via Stripe. Vos données bancaires sont cryptées et jamais stockées.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="cgv.html" style="display:inline;margin:0 10px">CGV</a>
+        <a href="mentions-legales.html" style="display:inline;margin:0 10px">Mentions légales</a>
+        <a href="confidentialite.html" style="display:inline;margin:0 10px">Politique de confidentialité</a>
+        <br><br>
+        © 2026 CahierMagik. Tous droits réservés.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      btn.classList.toggle('open');
+      var answer = btn.nextElementSibling;
+      if (answer) answer.classList.toggle('open');
+    }
+  </script>
+
+  <div class="toast-container" id="toast-container"></div>
+  <script src="products.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
